@@ -1,0 +1,19 @@
+{
+  "dataServiceGeneratorVersion": "0.12.5",
+  "appInfo": {
+    "name": "virtual-learning",
+    "description": "",
+    "version": "u3ub4a1i",
+    "id": "cl2ior9nk1529901s6m57ffvlj",
+    "url": "https://app.amplication.com/cl2ior9nk1529901s6m57ffvlj",
+    "settings": {
+      "dbHost": "localhost",
+      "dbName": "",
+      "dbPassword": "admin",
+      "dbPort": 5432,
+      "dbUser": "admin",
+      "appId": "cl2ior9nk1529901s6m57ffvlj",
+      "authProvider": "Jwt"
+    }
+  }
+}
