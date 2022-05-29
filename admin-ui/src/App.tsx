@@ -13,6 +13,10 @@ import { CourseList } from "./course/CourseList";
 import { CourseCreate } from "./course/CourseCreate";
 import { CourseEdit } from "./course/CourseEdit";
 import { CourseShow } from "./course/CourseShow";
+import { ThemeList } from "./theme/ThemeList";
+import { ThemeCreate } from "./theme/ThemeCreate";
+import { ThemeEdit } from "./theme/ThemeEdit";
+import { ThemeShow } from "./theme/ThemeShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -52,6 +56,13 @@ const App = (): React.ReactElement => {
           edit={CourseEdit}
           create={CourseCreate}
           show={CourseShow}
+        />
+        <Resource
+          name="Theme"
+          list={ThemeList}
+          edit={ThemeEdit}
+          create={ThemeCreate}
+          show={ThemeShow}
         />
       </Admin>
     </div>
