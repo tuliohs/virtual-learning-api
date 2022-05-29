@@ -1,5 +1,5 @@
 export enum EnumScheduleConfigDayWeek {
-  Segunda = "segunda",
+  Segunda = "Segunda",
   TerA = "terca",
   Quarta = "quarta",
   Quinta = "quinta",

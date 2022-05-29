@@ -4,8 +4,8 @@ export type ScheduleConfigOrderByInput = {
   createdAt?: SortOrder;
   dayWeek?: SortOrder;
   id?: SortOrder;
-  idUserId?: SortOrder;
   timeEnd?: SortOrder;
   timeStart?: SortOrder;
   updatedAt?: SortOrder;
+  userId?: SortOrder;
 };

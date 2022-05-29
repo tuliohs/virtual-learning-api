@@ -47,11 +47,11 @@ export class ScheduleConfigServiceBase {
     return this.prisma.scheduleConfig.delete(args);
   }
 
-  async getIdUser(parentId: string): Promise<User | null> {
+  async getUser(parentId: string): Promise<User | null> {
     return this.prisma.scheduleConfig
       .findUnique({
         where: { id: parentId },
       })
-      .idUser();
+      .user();
   }
 }

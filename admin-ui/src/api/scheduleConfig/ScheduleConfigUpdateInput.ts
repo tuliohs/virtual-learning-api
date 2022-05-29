@@ -2,14 +2,15 @@ import { UserWhereUniqueInput } from "../user/UserWhereUniqueInput";
 
 export type ScheduleConfigUpdateInput = {
   dayWeek?:
-    | "segunda"
+    | "Segunda"
     | "terca"
     | "quarta"
     | "quinta"
     | "sexta"
     | "sabado"
-    | "domingo";
-  idUser?: UserWhereUniqueInput;
+    | "domingo"
+    | null;
   timeEnd?: string;
   timeStart?: string;
+  user?: UserWhereUniqueInput | null;
 };

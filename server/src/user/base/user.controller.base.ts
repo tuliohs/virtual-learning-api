@@ -226,16 +226,15 @@ export class UserControllerBase {
         createdAt: true,
         dayWeek: true,
         id: true,
+        timeEnd: true,
+        timeStart: true,
+        updatedAt: true,
 
-        idUser: {
+        user: {
           select: {
             id: true,
           },
         },
-
-        timeEnd: true,
-        timeStart: true,
-        updatedAt: true,
       },
     });
     if (results === null) {

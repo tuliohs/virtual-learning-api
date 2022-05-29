@@ -11,7 +11,13 @@ https://docs.amplication.com/docs/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsDate, IsEnum, IsString, ValidateNested } from "class-validator";
+import {
+  IsDate,
+  IsEnum,
+  IsOptional,
+  IsString,
+  ValidateNested,
+} from "class-validator";
 import { Type } from "class-transformer";
 import { EnumScheduleConfigDayWeek } from "./EnumScheduleConfigDayWeek";
 import { User } from "../../user/base/User";
@@ -26,21 +32,23 @@ class ScheduleConfig {
   createdAt!: Date;
 
   @ApiProperty({
-    required: true,
+    required: false,
     enum: EnumScheduleConfigDayWeek,
   })
   @IsEnum(EnumScheduleConfigDayWeek)
+  @IsOptional()
   @Field(() => EnumScheduleConfigDayWeek, {
     nullable: true,
   })
   dayWeek?:
-    | "segunda"
+    | "Segunda"
     | "terca"
     | "quarta"
     | "quinta"
     | "sexta"
     | "sabado"
-    | "domingo";
+    | "domingo"
+    | null;
 
   @ApiProperty({
     required: true,
@@ -49,14 +57,6 @@ class ScheduleConfig {
   @IsString()
   @Field(() => String)
   id!: string;
-
-  @ApiProperty({
-    required: true,
-    type: () => User,
-  })
-  @ValidateNested()
-  @Type(() => User)
-  idUser?: User;
 
   @ApiProperty({
     required: true,
@@ -81,5 +81,14 @@ class ScheduleConfig {
   @Type(() => Date)
   @Field(() => Date)
   updatedAt!: Date;
+
+  @ApiProperty({
+    required: false,
+    type: () => User,
+  })
+  @ValidateNested()
+  @Type(() => User)
+  @IsOptional()
+  user?: User | null;
 }
 export { ScheduleConfig };

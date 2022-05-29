@@ -51,24 +51,25 @@ export class ScheduleConfigControllerBase {
       data: {
         ...data,
 
-        idUser: {
-          connect: data.idUser,
-        },
+        user: data.user
+          ? {
+              connect: data.user,
+            }
+          : undefined,
       },
       select: {
         createdAt: true,
         dayWeek: true,
         id: true,
+        timeEnd: true,
+        timeStart: true,
+        updatedAt: true,
 
-        idUser: {
+        user: {
           select: {
             id: true,
           },
         },
-
-        timeEnd: true,
-        timeStart: true,
-        updatedAt: true,
       },
     });
   }
@@ -91,16 +92,15 @@ export class ScheduleConfigControllerBase {
         createdAt: true,
         dayWeek: true,
         id: true,
+        timeEnd: true,
+        timeStart: true,
+        updatedAt: true,
 
-        idUser: {
+        user: {
           select: {
             id: true,
           },
         },
-
-        timeEnd: true,
-        timeStart: true,
-        updatedAt: true,
       },
     });
   }
@@ -124,16 +124,15 @@ export class ScheduleConfigControllerBase {
         createdAt: true,
         dayWeek: true,
         id: true,
+        timeEnd: true,
+        timeStart: true,
+        updatedAt: true,
 
-        idUser: {
+        user: {
           select: {
             id: true,
           },
         },
-
-        timeEnd: true,
-        timeStart: true,
-        updatedAt: true,
       },
     });
     if (result === null) {
@@ -164,24 +163,25 @@ export class ScheduleConfigControllerBase {
         data: {
           ...data,
 
-          idUser: {
-            connect: data.idUser,
-          },
+          user: data.user
+            ? {
+                connect: data.user,
+              }
+            : undefined,
         },
         select: {
           createdAt: true,
           dayWeek: true,
           id: true,
+          timeEnd: true,
+          timeStart: true,
+          updatedAt: true,
 
-          idUser: {
+          user: {
             select: {
               id: true,
             },
           },
-
-          timeEnd: true,
-          timeStart: true,
-          updatedAt: true,
         },
       });
     } catch (error) {
@@ -213,16 +213,15 @@ export class ScheduleConfigControllerBase {
           createdAt: true,
           dayWeek: true,
           id: true,
+          timeEnd: true,
+          timeStart: true,
+          updatedAt: true,
 
-          idUser: {
+          user: {
             select: {
               id: true,
             },
           },
-
-          timeEnd: true,
-          timeStart: true,
-          updatedAt: true,
         },
       });
     } catch (error) {

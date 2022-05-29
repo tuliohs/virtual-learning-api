@@ -16,12 +16,12 @@ export const ScheduleConfigShow = (props: ShowProps): React.ReactElement => {
         <DateField source="createdAt" label="Created At" />
         <TextField label="DayWeek" source="dayWeek" />
         <TextField label="ID" source="id" />
-        <ReferenceField label="IdUser" source="user.id" reference="User">
-          <TextField source={USER_TITLE_FIELD} />
-        </ReferenceField>
         <TextField label="TimeEnd" source="timeEnd" />
         <TextField label="TimeStart" source="timeStart" />
         <DateField source="updatedAt" label="Updated At" />
+        <ReferenceField label="User" source="user.id" reference="User">
+          <TextField source={USER_TITLE_FIELD} />
+        </ReferenceField>
       </SimpleShowLayout>
     </Show>
   );

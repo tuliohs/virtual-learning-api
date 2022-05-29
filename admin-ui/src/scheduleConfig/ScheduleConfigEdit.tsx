@@ -4,8 +4,8 @@ import {
   SimpleForm,
   EditProps,
   SelectInput,
-  ReferenceInput,
   TextInput,
+  ReferenceInput,
 } from "react-admin";
 import { UserTitle } from "../user/UserTitle";
 
@@ -17,7 +17,7 @@ export const ScheduleConfigEdit = (props: EditProps): React.ReactElement => {
           source="dayWeek"
           label="DayWeek"
           choices={[
-            { label: "Segunda", value: "segunda" },
+            { label: "Segunda", value: "Segunda" },
             { label: "Terça", value: "terca" },
             { label: "Quarta", value: "quarta" },
             { label: "Quinta", value: "quinta" },
@@ -26,13 +26,14 @@ export const ScheduleConfigEdit = (props: EditProps): React.ReactElement => {
             { label: "Domingo", value: "domingo" },
           ]}
           optionText="label"
+          allowEmpty
           optionValue="value"
         />
-        <ReferenceInput source="user.id" reference="User" label="IdUser">
-          <SelectInput optionText={UserTitle} />
-        </ReferenceInput>
         <TextInput label="TimeEnd" source="timeEnd" />
         <TextInput label="TimeStart" source="timeStart" />
+        <ReferenceInput source="user.id" reference="User" label="User">
+          <SelectInput optionText={UserTitle} />
+        </ReferenceInput>
       </SimpleForm>
     </Edit>
   );
