@@ -3,16 +3,17 @@ import { User } from "../user/User";
 export type ScheduleConfig = {
   createdAt: Date;
   dayWeek?:
-    | "segunda"
+    | "Segunda"
     | "terca"
     | "quarta"
     | "quinta"
     | "sexta"
     | "sabado"
-    | "domingo";
+    | "domingo"
+    | null;
   id: string;
-  idUser?: User;
   timeEnd: string;
   timeStart: string;
   updatedAt: Date;
+  user?: User | null;
 };

@@ -52,15 +52,6 @@ class ScheduleConfigOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  idUserId?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   timeEnd?: SortOrder;
 
   @ApiProperty({
@@ -80,6 +71,15 @@ class ScheduleConfigOrderByInput {
     nullable: true,
   })
   updatedAt?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  userId?: SortOrder;
 }
 
 export { ScheduleConfigOrderByInput };

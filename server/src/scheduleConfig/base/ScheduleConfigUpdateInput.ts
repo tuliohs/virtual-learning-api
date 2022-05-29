@@ -12,7 +12,7 @@ https://docs.amplication.com/docs/how-to/custom-code
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { EnumScheduleConfigDayWeek } from "./EnumScheduleConfigDayWeek";
-import { IsEnum, IsOptional, ValidateNested, IsString } from "class-validator";
+import { IsEnum, IsOptional, IsString, ValidateNested } from "class-validator";
 import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
 import { Type } from "class-transformer";
 @InputType()
@@ -27,25 +27,14 @@ class ScheduleConfigUpdateInput {
     nullable: true,
   })
   dayWeek?:
-    | "segunda"
+    | "Segunda"
     | "terca"
     | "quarta"
     | "quinta"
     | "sexta"
     | "sabado"
-    | "domingo";
-
-  @ApiProperty({
-    required: false,
-    type: () => UserWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => UserWhereUniqueInput)
-  @IsOptional()
-  @Field(() => UserWhereUniqueInput, {
-    nullable: true,
-  })
-  idUser?: UserWhereUniqueInput;
+    | "domingo"
+    | null;
 
   @ApiProperty({
     required: false,
@@ -68,5 +57,17 @@ class ScheduleConfigUpdateInput {
     nullable: true,
   })
   timeStart?: string;
+
+  @ApiProperty({
+    required: false,
+    type: () => UserWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => UserWhereUniqueInput)
+  @IsOptional()
+  @Field(() => UserWhereUniqueInput, {
+    nullable: true,
+  })
+  user?: UserWhereUniqueInput | null;
 }
 export { ScheduleConfigUpdateInput };

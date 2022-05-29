@@ -28,7 +28,7 @@ class ScheduleConfigWhereInput {
     nullable: true,
   })
   dayWeek?:
-    | "segunda"
+    | "Segunda"
     | "terca"
     | "quarta"
     | "quinta"
@@ -46,18 +46,6 @@ class ScheduleConfigWhereInput {
     nullable: true,
   })
   id?: StringFilter;
-
-  @ApiProperty({
-    required: false,
-    type: () => UserWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => UserWhereUniqueInput)
-  @IsOptional()
-  @Field(() => UserWhereUniqueInput, {
-    nullable: true,
-  })
-  idUser?: UserWhereUniqueInput;
 
   @ApiProperty({
     required: false,
@@ -80,5 +68,17 @@ class ScheduleConfigWhereInput {
     nullable: true,
   })
   timeStart?: StringFilter;
+
+  @ApiProperty({
+    required: false,
+    type: () => UserWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => UserWhereUniqueInput)
+  @IsOptional()
+  @Field(() => UserWhereUniqueInput, {
+    nullable: true,
+  })
+  user?: UserWhereUniqueInput;
 }
 export { ScheduleConfigWhereInput };

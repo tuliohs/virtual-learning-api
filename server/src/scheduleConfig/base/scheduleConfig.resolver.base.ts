@@ -100,9 +100,11 @@ export class ScheduleConfigResolverBase {
       data: {
         ...args.data,
 
-        idUser: {
-          connect: args.data.idUser,
-        },
+        user: args.data.user
+          ? {
+              connect: args.data.user,
+            }
+          : undefined,
       },
     });
   }
@@ -123,9 +125,11 @@ export class ScheduleConfigResolverBase {
         data: {
           ...args.data,
 
-          idUser: {
-            connect: args.data.idUser,
-          },
+          user: args.data.user
+            ? {
+                connect: args.data.user,
+              }
+            : undefined,
         },
       });
     } catch (error) {
@@ -166,8 +170,8 @@ export class ScheduleConfigResolverBase {
     action: "read",
     possession: "any",
   })
-  async idUser(@graphql.Parent() parent: ScheduleConfig): Promise<User | null> {
-    const result = await this.service.getIdUser(parent.id);
+  async user(@graphql.Parent() parent: ScheduleConfig): Promise<User | null> {
+    const result = await this.service.getUser(parent.id);
 
     if (!result) {
       return null;
