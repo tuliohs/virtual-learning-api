@@ -19,34 +19,31 @@ import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
 import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
 import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
-import { CreateUserArgs } from "./CreateUserArgs";
-import { UpdateUserArgs } from "./UpdateUserArgs";
-import { DeleteUserArgs } from "./DeleteUserArgs";
-import { UserFindManyArgs } from "./UserFindManyArgs";
-import { UserFindUniqueArgs } from "./UserFindUniqueArgs";
-import { User } from "./User";
-import { ScheduleConfigFindManyArgs } from "../../scheduleConfig/base/ScheduleConfigFindManyArgs";
-import { ScheduleConfig } from "../../scheduleConfig/base/ScheduleConfig";
-import { UsuarioTemaFindManyArgs } from "../../usuarioTema/base/UsuarioTemaFindManyArgs";
-import { UsuarioTema } from "../../usuarioTema/base/UsuarioTema";
-import { UserService } from "../user.service";
+import { CreateScheduleConfigArgs } from "./CreateScheduleConfigArgs";
+import { UpdateScheduleConfigArgs } from "./UpdateScheduleConfigArgs";
+import { DeleteScheduleConfigArgs } from "./DeleteScheduleConfigArgs";
+import { ScheduleConfigFindManyArgs } from "./ScheduleConfigFindManyArgs";
+import { ScheduleConfigFindUniqueArgs } from "./ScheduleConfigFindUniqueArgs";
+import { ScheduleConfig } from "./ScheduleConfig";
+import { User } from "../../user/base/User";
+import { ScheduleConfigService } from "../scheduleConfig.service";
 
-@graphql.Resolver(() => User)
+@graphql.Resolver(() => ScheduleConfig)
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
-export class UserResolverBase {
+export class ScheduleConfigResolverBase {
   constructor(
-    protected readonly service: UserService,
+    protected readonly service: ScheduleConfigService,
     protected readonly rolesBuilder: nestAccessControl.RolesBuilder
   ) {}
 
   @graphql.Query(() => MetaQueryPayload)
   @nestAccessControl.UseRoles({
-    resource: "User",
+    resource: "ScheduleConfig",
     action: "read",
     possession: "any",
   })
-  async _usersMeta(
-    @graphql.Args() args: UserFindManyArgs
+  async _scheduleConfigsMeta(
+    @graphql.Args() args: ScheduleConfigFindManyArgs
   ): Promise<MetaQueryPayload> {
     const results = await this.service.count({
       ...args,
@@ -59,24 +56,28 @@ export class UserResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.Query(() => [User])
+  @graphql.Query(() => [ScheduleConfig])
   @nestAccessControl.UseRoles({
-    resource: "User",
+    resource: "ScheduleConfig",
     action: "read",
     possession: "any",
   })
-  async users(@graphql.Args() args: UserFindManyArgs): Promise<User[]> {
+  async scheduleConfigs(
+    @graphql.Args() args: ScheduleConfigFindManyArgs
+  ): Promise<ScheduleConfig[]> {
     return this.service.findMany(args);
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.Query(() => User, { nullable: true })
+  @graphql.Query(() => ScheduleConfig, { nullable: true })
   @nestAccessControl.UseRoles({
-    resource: "User",
+    resource: "ScheduleConfig",
     action: "read",
     possession: "own",
   })
-  async user(@graphql.Args() args: UserFindUniqueArgs): Promise<User | null> {
+  async scheduleConfig(
+    @graphql.Args() args: ScheduleConfigFindUniqueArgs
+  ): Promise<ScheduleConfig | null> {
     const result = await this.service.findOne(args);
     if (result === null) {
       return null;
@@ -85,31 +86,47 @@ export class UserResolverBase {
   }
 
   @common.UseInterceptors(AclValidateRequestInterceptor)
-  @graphql.Mutation(() => User)
+  @graphql.Mutation(() => ScheduleConfig)
   @nestAccessControl.UseRoles({
-    resource: "User",
+    resource: "ScheduleConfig",
     action: "create",
     possession: "any",
   })
-  async createUser(@graphql.Args() args: CreateUserArgs): Promise<User> {
+  async createScheduleConfig(
+    @graphql.Args() args: CreateScheduleConfigArgs
+  ): Promise<ScheduleConfig> {
     return await this.service.create({
       ...args,
-      data: args.data,
+      data: {
+        ...args.data,
+
+        idUser: {
+          connect: args.data.idUser,
+        },
+      },
     });
   }
 
   @common.UseInterceptors(AclValidateRequestInterceptor)
-  @graphql.Mutation(() => User)
+  @graphql.Mutation(() => ScheduleConfig)
   @nestAccessControl.UseRoles({
-    resource: "User",
+    resource: "ScheduleConfig",
     action: "update",
     possession: "any",
   })
-  async updateUser(@graphql.Args() args: UpdateUserArgs): Promise<User | null> {
+  async updateScheduleConfig(
+    @graphql.Args() args: UpdateScheduleConfigArgs
+  ): Promise<ScheduleConfig | null> {
     try {
       return await this.service.update({
         ...args,
-        data: args.data,
+        data: {
+          ...args.data,
+
+          idUser: {
+            connect: args.data.idUser,
+          },
+        },
       });
     } catch (error) {
       if (isRecordNotFoundError(error)) {
@@ -121,13 +138,15 @@ export class UserResolverBase {
     }
   }
 
-  @graphql.Mutation(() => User)
+  @graphql.Mutation(() => ScheduleConfig)
   @nestAccessControl.UseRoles({
-    resource: "User",
+    resource: "ScheduleConfig",
     action: "delete",
     possession: "any",
   })
-  async deleteUser(@graphql.Args() args: DeleteUserArgs): Promise<User | null> {
+  async deleteScheduleConfig(
+    @graphql.Args() args: DeleteScheduleConfigArgs
+  ): Promise<ScheduleConfig | null> {
     try {
       return await this.service.delete(args);
     } catch (error) {
@@ -141,42 +160,18 @@ export class UserResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => [ScheduleConfig])
+  @graphql.ResolveField(() => User, { nullable: true })
   @nestAccessControl.UseRoles({
-    resource: "ScheduleConfig",
+    resource: "User",
     action: "read",
     possession: "any",
   })
-  async scheduleConfigs(
-    @graphql.Parent() parent: User,
-    @graphql.Args() args: ScheduleConfigFindManyArgs
-  ): Promise<ScheduleConfig[]> {
-    const results = await this.service.findScheduleConfigs(parent.id, args);
+  async idUser(@graphql.Parent() parent: ScheduleConfig): Promise<User | null> {
+    const result = await this.service.getIdUser(parent.id);
 
-    if (!results) {
-      return [];
+    if (!result) {
+      return null;
     }
-
-    return results;
-  }
-
-  @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => [UsuarioTema])
-  @nestAccessControl.UseRoles({
-    resource: "UsuarioTema",
-    action: "read",
-    possession: "any",
-  })
-  async userThemes(
-    @graphql.Parent() parent: User,
-    @graphql.Args() args: UsuarioTemaFindManyArgs
-  ): Promise<UsuarioTema[]> {
-    const results = await this.service.findUserThemes(parent.id, args);
-
-    if (!results) {
-      return [];
-    }
-
-    return results;
+    return result;
   }
 }

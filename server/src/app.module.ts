@@ -5,6 +5,7 @@ import { UserModule } from "./user/user.module";
 import { CourseModule } from "./course/course.module";
 import { ThemeModule } from "./theme/theme.module";
 import { UsuarioTemaModule } from "./usuarioTema/usuarioTema.module";
+import { ScheduleConfigModule } from "./scheduleConfig/scheduleConfig.module";
 import { ACLModule } from "./auth/acl.module";
 import { AuthModule } from "./auth/auth.module";
 import { HealthModule } from "./health/health.module";
@@ -21,6 +22,7 @@ import { GraphQLModule } from "@nestjs/graphql";
     CourseModule,
     ThemeModule,
     UsuarioTemaModule,
+    ScheduleConfigModule,
     ACLModule,
     AuthModule,
     HealthModule,

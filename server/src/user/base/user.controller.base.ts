@@ -27,6 +27,9 @@ import { UserWhereUniqueInput } from "./UserWhereUniqueInput";
 import { UserFindManyArgs } from "./UserFindManyArgs";
 import { UserUpdateInput } from "./UserUpdateInput";
 import { User } from "./User";
+import { ScheduleConfigFindManyArgs } from "../../scheduleConfig/base/ScheduleConfigFindManyArgs";
+import { ScheduleConfig } from "../../scheduleConfig/base/ScheduleConfig";
+import { ScheduleConfigWhereUniqueInput } from "../../scheduleConfig/base/ScheduleConfigWhereUniqueInput";
 import { UsuarioTemaFindManyArgs } from "../../usuarioTema/base/UsuarioTemaFindManyArgs";
 import { UsuarioTema } from "../../usuarioTema/base/UsuarioTema";
 import { UsuarioTemaWhereUniqueInput } from "../../usuarioTema/base/UsuarioTemaWhereUniqueInput";
@@ -202,6 +205,111 @@ export class UserControllerBase {
       }
       throw error;
     }
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @nestAccessControl.UseRoles({
+    resource: "ScheduleConfig",
+    action: "read",
+    possession: "any",
+  })
+  @common.Get("/:id/scheduleConfigs")
+  @ApiNestedQuery(ScheduleConfigFindManyArgs)
+  async findManyScheduleConfigs(
+    @common.Req() request: Request,
+    @common.Param() params: UserWhereUniqueInput
+  ): Promise<ScheduleConfig[]> {
+    const query = plainToClass(ScheduleConfigFindManyArgs, request.query);
+    const results = await this.service.findScheduleConfigs(params.id, {
+      ...query,
+      select: {
+        createdAt: true,
+        dayWeek: true,
+        id: true,
+
+        idUser: {
+          select: {
+            id: true,
+          },
+        },
+
+        timeEnd: true,
+        timeStart: true,
+        updatedAt: true,
+      },
+    });
+    if (results === null) {
+      throw new errors.NotFoundException(
+        `No resource was found for ${JSON.stringify(params)}`
+      );
+    }
+    return results;
+  }
+
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
+  @common.Post("/:id/scheduleConfigs")
+  async connectScheduleConfigs(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() body: ScheduleConfigWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      scheduleConfigs: {
+        connect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
+  @common.Patch("/:id/scheduleConfigs")
+  async updateScheduleConfigs(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() body: ScheduleConfigWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      scheduleConfigs: {
+        set: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
+  @common.Delete("/:id/scheduleConfigs")
+  async disconnectScheduleConfigs(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() body: ScheduleConfigWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      scheduleConfigs: {
+        disconnect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)

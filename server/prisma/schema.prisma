@@ -8,17 +8,18 @@ generator client {
 }
 
 model User {
-  avatar     String?
-  bio        String?
-  createdAt  DateTime      @default(now())
-  email      String?
-  id         String        @id @default(cuid())
-  name       String?
-  password   String
-  roles      String[]
-  updatedAt  DateTime      @updatedAt
-  username   String        @unique
-  userThemes UsuarioTema[]
+  avatar          String?
+  bio             String?
+  createdAt       DateTime         @default(now())
+  email           String?
+  id              String           @id @default(cuid())
+  name            String?
+  password        String
+  roles           String[]
+  scheduleConfigs ScheduleConfig[]
+  updatedAt       DateTime         @updatedAt
+  username        String           @unique
+  userThemes      UsuarioTema[]
 }
 
 model Course {
@@ -46,4 +47,25 @@ model UsuarioTema {
   idUser    User     @relation(fields: [idUserId], references: [id])
   idUserId  String   @unique
   updatedAt DateTime @updatedAt
+}
+
+model ScheduleConfig {
+  createdAt DateTime                  @default(now())
+  dayWeek   EnumScheduleConfigDayWeek
+  id        String                    @id @default(cuid())
+  idUser    User                      @relation(fields: [idUserId], references: [id])
+  idUserId  String
+  timeEnd   String
+  timeStart String
+  updatedAt DateTime                  @updatedAt
+}
+
+enum EnumScheduleConfigDayWeek {
+  segunda
+  terca
+  quarta
+  quinta
+  sexta
+  sabado
+  domingo
 }

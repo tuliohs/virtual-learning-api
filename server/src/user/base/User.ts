@@ -13,6 +13,7 @@ import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { IsString, IsOptional, IsDate, ValidateNested } from "class-validator";
 import { Type } from "class-transformer";
+import { ScheduleConfig } from "../../scheduleConfig/base/ScheduleConfig";
 import { UsuarioTema } from "../../usuarioTema/base/UsuarioTema";
 @ObjectType()
 class User {
@@ -85,6 +86,15 @@ class User {
   })
   @Field(() => [String])
   roles!: Array<string>;
+
+  @ApiProperty({
+    required: false,
+    type: () => [ScheduleConfig],
+  })
+  @ValidateNested()
+  @Type(() => ScheduleConfig)
+  @IsOptional()
+  scheduleConfigs?: Array<ScheduleConfig>;
 
   @ApiProperty({
     required: true,
