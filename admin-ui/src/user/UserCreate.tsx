@@ -7,8 +7,10 @@ import {
   TextInput,
   PasswordInput,
   SelectArrayInput,
+  ReferenceArrayInput,
 } from "react-admin";
 
+import { UsuarioTemaTitle } from "../usuarioTema/UsuarioTemaTitle";
 import { ROLES_OPTIONS } from "../user/RolesOptions";
 
 export const UserCreate = (props: CreateProps): React.ReactElement => {
@@ -25,6 +27,14 @@ export const UserCreate = (props: CreateProps): React.ReactElement => {
           optionValue="value"
         />
         <TextInput label="Username" source="username" />
+        <ReferenceArrayInput
+          source="userThemes"
+          reference="UsuarioTema"
+          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
+          format={(value: any) => value && value.map((v: any) => v.id)}
+        >
+          <SelectArrayInput optionText={UsuarioTemaTitle} />
+        </ReferenceArrayInput>
       </SimpleForm>
     </Create>
   );

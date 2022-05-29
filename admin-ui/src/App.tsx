@@ -17,6 +17,10 @@ import { ThemeList } from "./theme/ThemeList";
 import { ThemeCreate } from "./theme/ThemeCreate";
 import { ThemeEdit } from "./theme/ThemeEdit";
 import { ThemeShow } from "./theme/ThemeShow";
+import { UsuarioTemaList } from "./usuarioTema/UsuarioTemaList";
+import { UsuarioTemaCreate } from "./usuarioTema/UsuarioTemaCreate";
+import { UsuarioTemaEdit } from "./usuarioTema/UsuarioTemaEdit";
+import { UsuarioTemaShow } from "./usuarioTema/UsuarioTemaShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -63,6 +67,13 @@ const App = (): React.ReactElement => {
           edit={ThemeEdit}
           create={ThemeCreate}
           show={ThemeShow}
+        />
+        <Resource
+          name="UsuarioTema"
+          list={UsuarioTemaList}
+          edit={UsuarioTemaEdit}
+          create={UsuarioTemaCreate}
+          show={UsuarioTemaShow}
         />
       </Admin>
     </div>

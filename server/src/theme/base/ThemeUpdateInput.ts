@@ -11,7 +11,9 @@ https://docs.amplication.com/docs/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsOptional } from "class-validator";
+import { IsString, IsOptional, ValidateNested } from "class-validator";
+import { UsuarioTemaUpdateManyWithoutThemesInput } from "./UsuarioTemaUpdateManyWithoutThemesInput";
+import { Type } from "class-transformer";
 @InputType()
 class ThemeUpdateInput {
   @ApiProperty({
@@ -35,5 +37,17 @@ class ThemeUpdateInput {
     nullable: true,
   })
   name?: string;
+
+  @ApiProperty({
+    required: false,
+    type: () => UsuarioTemaUpdateManyWithoutThemesInput,
+  })
+  @ValidateNested()
+  @Type(() => UsuarioTemaUpdateManyWithoutThemesInput)
+  @IsOptional()
+  @Field(() => UsuarioTemaUpdateManyWithoutThemesInput, {
+    nullable: true,
+  })
+  userTheme?: UsuarioTemaUpdateManyWithoutThemesInput;
 }
 export { ThemeUpdateInput };
