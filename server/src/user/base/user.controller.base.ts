@@ -27,6 +27,9 @@ import { UserWhereUniqueInput } from "./UserWhereUniqueInput";
 import { UserFindManyArgs } from "./UserFindManyArgs";
 import { UserUpdateInput } from "./UserUpdateInput";
 import { User } from "./User";
+import { UsuarioTemaFindManyArgs } from "../../usuarioTema/base/UsuarioTemaFindManyArgs";
+import { UsuarioTema } from "../../usuarioTema/base/UsuarioTema";
+import { UsuarioTemaWhereUniqueInput } from "../../usuarioTema/base/UsuarioTemaWhereUniqueInput";
 @swagger.ApiBearerAuth()
 @common.UseGuards(defaultAuthGuard.DefaultAuthGuard, nestAccessControl.ACGuard)
 export class UserControllerBase {
@@ -189,5 +192,113 @@ export class UserControllerBase {
       }
       throw error;
     }
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @nestAccessControl.UseRoles({
+    resource: "UsuarioTema",
+    action: "read",
+    possession: "any",
+  })
+  @common.Get("/:id/userThemes")
+  @ApiNestedQuery(UsuarioTemaFindManyArgs)
+  async findManyUserThemes(
+    @common.Req() request: Request,
+    @common.Param() params: UserWhereUniqueInput
+  ): Promise<UsuarioTema[]> {
+    const query = plainToClass(UsuarioTemaFindManyArgs, request.query);
+    const results = await this.service.findUserThemes(params.id, {
+      ...query,
+      select: {
+        createdAt: true,
+        id: true,
+
+        idTema: {
+          select: {
+            id: true,
+          },
+        },
+
+        idUser: {
+          select: {
+            id: true,
+          },
+        },
+
+        updatedAt: true,
+      },
+    });
+    if (results === null) {
+      throw new errors.NotFoundException(
+        `No resource was found for ${JSON.stringify(params)}`
+      );
+    }
+    return results;
+  }
+
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
+  @common.Post("/:id/userThemes")
+  async connectUserThemes(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() body: UsuarioTemaWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      userThemes: {
+        connect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
+  @common.Patch("/:id/userThemes")
+  async updateUserThemes(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() body: UsuarioTemaWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      userThemes: {
+        set: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
+  @common.Delete("/:id/userThemes")
+  async disconnectUserThemes(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() body: UsuarioTemaWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      userThemes: {
+        disconnect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
   }
 }

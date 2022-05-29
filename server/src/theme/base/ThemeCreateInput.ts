@@ -11,7 +11,9 @@ https://docs.amplication.com/docs/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsOptional } from "class-validator";
+import { IsString, IsOptional, ValidateNested } from "class-validator";
+import { UsuarioTemaCreateNestedManyWithoutThemesInput } from "./UsuarioTemaCreateNestedManyWithoutThemesInput";
+import { Type } from "class-transformer";
 @InputType()
 class ThemeCreateInput {
   @ApiProperty({
@@ -32,5 +34,17 @@ class ThemeCreateInput {
   @IsString()
   @Field(() => String)
   name!: string;
+
+  @ApiProperty({
+    required: false,
+    type: () => UsuarioTemaCreateNestedManyWithoutThemesInput,
+  })
+  @ValidateNested()
+  @Type(() => UsuarioTemaCreateNestedManyWithoutThemesInput)
+  @IsOptional()
+  @Field(() => UsuarioTemaCreateNestedManyWithoutThemesInput, {
+    nullable: true,
+  })
+  userTheme?: UsuarioTemaCreateNestedManyWithoutThemesInput;
 }
 export { ThemeCreateInput };

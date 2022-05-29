@@ -25,6 +25,8 @@ import { DeleteThemeArgs } from "./DeleteThemeArgs";
 import { ThemeFindManyArgs } from "./ThemeFindManyArgs";
 import { ThemeFindUniqueArgs } from "./ThemeFindUniqueArgs";
 import { Theme } from "./Theme";
+import { UsuarioTemaFindManyArgs } from "../../usuarioTema/base/UsuarioTemaFindManyArgs";
+import { UsuarioTema } from "../../usuarioTema/base/UsuarioTema";
 import { ThemeService } from "../theme.service";
 
 @graphql.Resolver(() => Theme)
@@ -140,5 +142,25 @@ export class ThemeResolverBase {
       }
       throw error;
     }
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => [UsuarioTema])
+  @nestAccessControl.UseRoles({
+    resource: "UsuarioTema",
+    action: "read",
+    possession: "any",
+  })
+  async userTheme(
+    @graphql.Parent() parent: Theme,
+    @graphql.Args() args: UsuarioTemaFindManyArgs
+  ): Promise<UsuarioTema[]> {
+    const results = await this.service.findUserTheme(parent.id, args);
+
+    if (!results) {
+      return [];
+    }
+
+    return results;
   }
 }
