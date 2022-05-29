@@ -25,3 +25,11 @@ model Course {
   title       String
   updatedAt   DateTime @updatedAt
 }
+
+model Theme {
+  createdAt   DateTime @default(now())
+  description String?
+  id          String   @id @default(cuid())
+  name        String
+  updatedAt   DateTime @updatedAt
+}

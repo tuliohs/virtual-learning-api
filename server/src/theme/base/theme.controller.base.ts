@@ -18,40 +18,40 @@ import * as errors from "../../errors";
 import { Request } from "express";
 import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
-import { CourseService } from "../course.service";
+import { ThemeService } from "../theme.service";
 import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
 import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
-import { CourseCreateInput } from "./CourseCreateInput";
-import { CourseWhereInput } from "./CourseWhereInput";
-import { CourseWhereUniqueInput } from "./CourseWhereUniqueInput";
-import { CourseFindManyArgs } from "./CourseFindManyArgs";
-import { CourseUpdateInput } from "./CourseUpdateInput";
-import { Course } from "./Course";
+import { ThemeCreateInput } from "./ThemeCreateInput";
+import { ThemeWhereInput } from "./ThemeWhereInput";
+import { ThemeWhereUniqueInput } from "./ThemeWhereUniqueInput";
+import { ThemeFindManyArgs } from "./ThemeFindManyArgs";
+import { ThemeUpdateInput } from "./ThemeUpdateInput";
+import { Theme } from "./Theme";
 @swagger.ApiBearerAuth()
 @common.UseGuards(defaultAuthGuard.DefaultAuthGuard, nestAccessControl.ACGuard)
-export class CourseControllerBase {
+export class ThemeControllerBase {
   constructor(
-    protected readonly service: CourseService,
+    protected readonly service: ThemeService,
     protected readonly rolesBuilder: nestAccessControl.RolesBuilder
   ) {}
 
   @common.UseInterceptors(AclValidateRequestInterceptor)
   @nestAccessControl.UseRoles({
-    resource: "Course",
+    resource: "Theme",
     action: "create",
     possession: "any",
   })
   @common.Post()
-  @swagger.ApiCreatedResponse({ type: Course })
+  @swagger.ApiCreatedResponse({ type: Theme })
   @swagger.ApiForbiddenResponse({ type: errors.ForbiddenException })
-  async create(@common.Body() data: CourseCreateInput): Promise<Course> {
+  async create(@common.Body() data: ThemeCreateInput): Promise<Theme> {
     return await this.service.create({
       data: data,
       select: {
         createdAt: true,
         description: true,
         id: true,
-        title: true,
+        name: true,
         updatedAt: true,
       },
     });
@@ -59,23 +59,23 @@ export class CourseControllerBase {
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
   @nestAccessControl.UseRoles({
-    resource: "Course",
+    resource: "Theme",
     action: "read",
     possession: "any",
   })
   @common.Get()
-  @swagger.ApiOkResponse({ type: [Course] })
+  @swagger.ApiOkResponse({ type: [Theme] })
   @swagger.ApiForbiddenResponse()
-  @ApiNestedQuery(CourseFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Course[]> {
-    const args = plainToClass(CourseFindManyArgs, request.query);
+  @ApiNestedQuery(ThemeFindManyArgs)
+  async findMany(@common.Req() request: Request): Promise<Theme[]> {
+    const args = plainToClass(ThemeFindManyArgs, request.query);
     return this.service.findMany({
       ...args,
       select: {
         createdAt: true,
         description: true,
         id: true,
-        title: true,
+        name: true,
         updatedAt: true,
       },
     });
@@ -83,24 +83,24 @@ export class CourseControllerBase {
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
   @nestAccessControl.UseRoles({
-    resource: "Course",
+    resource: "Theme",
     action: "read",
     possession: "own",
   })
   @common.Get("/:id")
-  @swagger.ApiOkResponse({ type: Course })
+  @swagger.ApiOkResponse({ type: Theme })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
   @swagger.ApiForbiddenResponse({ type: errors.ForbiddenException })
   async findOne(
-    @common.Param() params: CourseWhereUniqueInput
-  ): Promise<Course | null> {
+    @common.Param() params: ThemeWhereUniqueInput
+  ): Promise<Theme | null> {
     const result = await this.service.findOne({
       where: params,
       select: {
         createdAt: true,
         description: true,
         id: true,
-        title: true,
+        name: true,
         updatedAt: true,
       },
     });
@@ -114,18 +114,18 @@ export class CourseControllerBase {
 
   @common.UseInterceptors(AclValidateRequestInterceptor)
   @nestAccessControl.UseRoles({
-    resource: "Course",
+    resource: "Theme",
     action: "update",
     possession: "any",
   })
   @common.Patch("/:id")
-  @swagger.ApiOkResponse({ type: Course })
+  @swagger.ApiOkResponse({ type: Theme })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
   @swagger.ApiForbiddenResponse({ type: errors.ForbiddenException })
   async update(
-    @common.Param() params: CourseWhereUniqueInput,
-    @common.Body() data: CourseUpdateInput
-  ): Promise<Course | null> {
+    @common.Param() params: ThemeWhereUniqueInput,
+    @common.Body() data: ThemeUpdateInput
+  ): Promise<Theme | null> {
     try {
       return await this.service.update({
         where: params,
@@ -134,7 +134,7 @@ export class CourseControllerBase {
           createdAt: true,
           description: true,
           id: true,
-          title: true,
+          name: true,
           updatedAt: true,
         },
       });
@@ -149,17 +149,17 @@ export class CourseControllerBase {
   }
 
   @nestAccessControl.UseRoles({
-    resource: "Course",
+    resource: "Theme",
     action: "delete",
     possession: "any",
   })
   @common.Delete("/:id")
-  @swagger.ApiOkResponse({ type: Course })
+  @swagger.ApiOkResponse({ type: Theme })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
   @swagger.ApiForbiddenResponse({ type: errors.ForbiddenException })
   async delete(
-    @common.Param() params: CourseWhereUniqueInput
-  ): Promise<Course | null> {
+    @common.Param() params: ThemeWhereUniqueInput
+  ): Promise<Theme | null> {
     try {
       return await this.service.delete({
         where: params,
@@ -167,7 +167,7 @@ export class CourseControllerBase {
           createdAt: true,
           description: true,
           id: true,
-          title: true,
+          name: true,
           updatedAt: true,
         },
       });

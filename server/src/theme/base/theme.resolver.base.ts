@@ -19,30 +19,30 @@ import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
 import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
 import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
-import { CreateCourseArgs } from "./CreateCourseArgs";
-import { UpdateCourseArgs } from "./UpdateCourseArgs";
-import { DeleteCourseArgs } from "./DeleteCourseArgs";
-import { CourseFindManyArgs } from "./CourseFindManyArgs";
-import { CourseFindUniqueArgs } from "./CourseFindUniqueArgs";
-import { Course } from "./Course";
-import { CourseService } from "../course.service";
+import { CreateThemeArgs } from "./CreateThemeArgs";
+import { UpdateThemeArgs } from "./UpdateThemeArgs";
+import { DeleteThemeArgs } from "./DeleteThemeArgs";
+import { ThemeFindManyArgs } from "./ThemeFindManyArgs";
+import { ThemeFindUniqueArgs } from "./ThemeFindUniqueArgs";
+import { Theme } from "./Theme";
+import { ThemeService } from "../theme.service";
 
-@graphql.Resolver(() => Course)
+@graphql.Resolver(() => Theme)
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
-export class CourseResolverBase {
+export class ThemeResolverBase {
   constructor(
-    protected readonly service: CourseService,
+    protected readonly service: ThemeService,
     protected readonly rolesBuilder: nestAccessControl.RolesBuilder
   ) {}
 
   @graphql.Query(() => MetaQueryPayload)
   @nestAccessControl.UseRoles({
-    resource: "Course",
+    resource: "Theme",
     action: "read",
     possession: "any",
   })
-  async _coursesMeta(
-    @graphql.Args() args: CourseFindManyArgs
+  async _themesMeta(
+    @graphql.Args() args: ThemeFindManyArgs
   ): Promise<MetaQueryPayload> {
     const results = await this.service.count({
       ...args,
@@ -55,26 +55,26 @@ export class CourseResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.Query(() => [Course])
+  @graphql.Query(() => [Theme])
   @nestAccessControl.UseRoles({
-    resource: "Course",
+    resource: "Theme",
     action: "read",
     possession: "any",
   })
-  async courses(@graphql.Args() args: CourseFindManyArgs): Promise<Course[]> {
+  async themes(@graphql.Args() args: ThemeFindManyArgs): Promise<Theme[]> {
     return this.service.findMany(args);
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.Query(() => Course, { nullable: true })
+  @graphql.Query(() => Theme, { nullable: true })
   @nestAccessControl.UseRoles({
-    resource: "Course",
+    resource: "Theme",
     action: "read",
     possession: "own",
   })
-  async course(
-    @graphql.Args() args: CourseFindUniqueArgs
-  ): Promise<Course | null> {
+  async theme(
+    @graphql.Args() args: ThemeFindUniqueArgs
+  ): Promise<Theme | null> {
     const result = await this.service.findOne(args);
     if (result === null) {
       return null;
@@ -83,13 +83,13 @@ export class CourseResolverBase {
   }
 
   @common.UseInterceptors(AclValidateRequestInterceptor)
-  @graphql.Mutation(() => Course)
+  @graphql.Mutation(() => Theme)
   @nestAccessControl.UseRoles({
-    resource: "Course",
+    resource: "Theme",
     action: "create",
     possession: "any",
   })
-  async createCourse(@graphql.Args() args: CreateCourseArgs): Promise<Course> {
+  async createTheme(@graphql.Args() args: CreateThemeArgs): Promise<Theme> {
     return await this.service.create({
       ...args,
       data: args.data,
@@ -97,15 +97,15 @@ export class CourseResolverBase {
   }
 
   @common.UseInterceptors(AclValidateRequestInterceptor)
-  @graphql.Mutation(() => Course)
+  @graphql.Mutation(() => Theme)
   @nestAccessControl.UseRoles({
-    resource: "Course",
+    resource: "Theme",
     action: "update",
     possession: "any",
   })
-  async updateCourse(
-    @graphql.Args() args: UpdateCourseArgs
-  ): Promise<Course | null> {
+  async updateTheme(
+    @graphql.Args() args: UpdateThemeArgs
+  ): Promise<Theme | null> {
     try {
       return await this.service.update({
         ...args,
@@ -121,15 +121,15 @@ export class CourseResolverBase {
     }
   }
 
-  @graphql.Mutation(() => Course)
+  @graphql.Mutation(() => Theme)
   @nestAccessControl.UseRoles({
-    resource: "Course",
+    resource: "Theme",
     action: "delete",
     possession: "any",
   })
-  async deleteCourse(
-    @graphql.Args() args: DeleteCourseArgs
-  ): Promise<Course | null> {
+  async deleteTheme(
+    @graphql.Args() args: DeleteThemeArgs
+  ): Promise<Theme | null> {
     try {
       return await this.service.delete(args);
     } catch (error) {
