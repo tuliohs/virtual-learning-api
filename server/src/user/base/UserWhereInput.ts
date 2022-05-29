@@ -107,6 +107,6 @@ class UserWhereInput {
   @Field(() => UsuarioTemaListRelationFilter, {
     nullable: true,
   })
-  userThemes?: UsuarioTemaListRelationFilter;
+  usuarioTemas?: UsuarioTemaListRelationFilter;
 }
 export { UserWhereInput };

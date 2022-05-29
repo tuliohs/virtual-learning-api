@@ -23,13 +23,13 @@ export const UsuarioTemaList = (props: ListProps): React.ReactElement => {
       <Datagrid rowClick="show">
         <DateField source="createdAt" label="Created At" />
         <TextField label="ID" source="id" />
-        <ReferenceField label="IdTema" source="theme.id" reference="Theme">
+        <ReferenceField label="Theme" source="theme.id" reference="Theme">
           <TextField source={THEME_TITLE_FIELD} />
         </ReferenceField>
-        <ReferenceField label="IdUser" source="user.id" reference="User">
+        <DateField source="updatedAt" label="Updated At" />
+        <ReferenceField label="User" source="user.id" reference="User">
           <TextField source={USER_TITLE_FIELD} />
         </ReferenceField>
-        <DateField source="updatedAt" label="Updated At" />
       </Datagrid>
     </List>
   );

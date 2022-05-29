@@ -3,5 +3,5 @@ import { UsuarioTemaUpdateManyWithoutThemesInput } from "./UsuarioTemaUpdateMany
 export type ThemeUpdateInput = {
   description?: string | null;
   name?: string;
-  userTheme?: UsuarioTemaUpdateManyWithoutThemesInput;
+  usuarioTemas?: UsuarioTemaUpdateManyWithoutThemesInput;
 };

@@ -39,7 +39,7 @@ export const UserEdit = (props: EditProps): React.ReactElement => {
         </ReferenceArrayInput>
         <TextInput label="Username" source="username" />
         <ReferenceArrayInput
-          source="userThemes"
+          source="usuarioTemas"
           reference="UsuarioTema"
           parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
           format={(value: any) => value && value.map((v: any) => v.id)}

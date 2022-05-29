@@ -6,5 +6,5 @@ export type ThemeWhereInput = {
   description?: StringNullableFilter;
   id?: StringFilter;
   name?: StringFilter;
-  userTheme?: UsuarioTemaListRelationFilter;
+  usuarioTemas?: UsuarioTemaListRelationFilter;
 };

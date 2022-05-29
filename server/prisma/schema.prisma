@@ -19,7 +19,7 @@ model User {
   scheduleConfigs ScheduleConfig[]
   updatedAt       DateTime         @updatedAt
   username        String           @unique
-  userThemes      UsuarioTema[]
+  usuarioTemas    UsuarioTema[]
 }
 
 model Course {
@@ -31,22 +31,22 @@ model Course {
 }
 
 model Theme {
-  createdAt   DateTime      @default(now())
-  description String?
-  id          String        @id @default(cuid())
-  name        String
-  updatedAt   DateTime      @updatedAt
-  userTheme   UsuarioTema[]
+  createdAt    DateTime      @default(now())
+  description  String?
+  id           String        @id @default(cuid())
+  name         String
+  updatedAt    DateTime      @updatedAt
+  usuarioTemas UsuarioTema[]
 }
 
 model UsuarioTema {
   createdAt DateTime @default(now())
   id        String   @id @default(cuid())
-  idTema    Theme    @relation(fields: [idTemaId], references: [id])
-  idTemaId  String   @unique
-  idUser    User     @relation(fields: [idUserId], references: [id])
-  idUserId  String   @unique
+  theme     Theme?   @relation(fields: [themeId], references: [id])
+  themeId   String?
   updatedAt DateTime @updatedAt
+  user      User?    @relation(fields: [userId], references: [id])
+  userId    String?
 }
 
 model ScheduleConfig {

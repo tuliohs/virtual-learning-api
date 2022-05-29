@@ -47,7 +47,7 @@ export class ThemeServiceBase {
     return this.prisma.theme.delete(args);
   }
 
-  async findUserTheme(
+  async findUsuarioTemas(
     parentId: string,
     args: Prisma.UsuarioTemaFindManyArgs
   ): Promise<UsuarioTema[]> {
@@ -55,6 +55,6 @@ export class ThemeServiceBase {
       .findUnique({
         where: { id: parentId },
       })
-      .userTheme(args);
+      .usuarioTemas(args);
   }
 }

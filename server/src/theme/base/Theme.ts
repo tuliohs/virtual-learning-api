@@ -66,6 +66,6 @@ class Theme {
   @ValidateNested()
   @Type(() => UsuarioTema)
   @IsOptional()
-  userTheme?: Array<UsuarioTema>;
+  usuarioTemas?: Array<UsuarioTema>;
 }
 export { Theme };

@@ -4,6 +4,6 @@ import { UserWhereUniqueInput } from "../user/UserWhereUniqueInput";
 
 export type UsuarioTemaWhereInput = {
   id?: StringFilter;
-  idTema?: ThemeWhereUniqueInput;
-  idUser?: UserWhereUniqueInput;
+  theme?: ThemeWhereUniqueInput;
+  user?: UserWhereUniqueInput;
 };

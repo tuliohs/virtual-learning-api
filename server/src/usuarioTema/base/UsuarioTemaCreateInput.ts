@@ -12,27 +12,33 @@ https://docs.amplication.com/docs/how-to/custom-code
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { ThemeWhereUniqueInput } from "../../theme/base/ThemeWhereUniqueInput";
-import { ValidateNested } from "class-validator";
+import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
 import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
 @InputType()
 class UsuarioTemaCreateInput {
   @ApiProperty({
-    required: true,
+    required: false,
     type: () => ThemeWhereUniqueInput,
   })
   @ValidateNested()
   @Type(() => ThemeWhereUniqueInput)
-  @Field(() => ThemeWhereUniqueInput)
-  idTema!: ThemeWhereUniqueInput;
+  @IsOptional()
+  @Field(() => ThemeWhereUniqueInput, {
+    nullable: true,
+  })
+  theme?: ThemeWhereUniqueInput | null;
 
   @ApiProperty({
-    required: true,
+    required: false,
     type: () => UserWhereUniqueInput,
   })
   @ValidateNested()
   @Type(() => UserWhereUniqueInput)
-  @Field(() => UserWhereUniqueInput)
-  idUser!: UserWhereUniqueInput;
+  @IsOptional()
+  @Field(() => UserWhereUniqueInput, {
+    nullable: true,
+  })
+  user?: UserWhereUniqueInput | null;
 }
 export { UsuarioTemaCreateInput };
