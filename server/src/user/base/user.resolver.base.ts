@@ -25,6 +25,8 @@ import { DeleteUserArgs } from "./DeleteUserArgs";
 import { UserFindManyArgs } from "./UserFindManyArgs";
 import { UserFindUniqueArgs } from "./UserFindUniqueArgs";
 import { User } from "./User";
+import { UsuarioTemaFindManyArgs } from "../../usuarioTema/base/UsuarioTemaFindManyArgs";
+import { UsuarioTema } from "../../usuarioTema/base/UsuarioTema";
 import { UserService } from "../user.service";
 
 @graphql.Resolver(() => User)
@@ -134,5 +136,25 @@ export class UserResolverBase {
       }
       throw error;
     }
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => [UsuarioTema])
+  @nestAccessControl.UseRoles({
+    resource: "UsuarioTema",
+    action: "read",
+    possession: "any",
+  })
+  async userThemes(
+    @graphql.Parent() parent: User,
+    @graphql.Args() args: UsuarioTemaFindManyArgs
+  ): Promise<UsuarioTema[]> {
+    const results = await this.service.findUserThemes(parent.id, args);
+
+    if (!results) {
+      return [];
+    }
+
+    return results;
   }
 }

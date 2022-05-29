@@ -1,3 +1,5 @@
+import { UsuarioTema } from "../usuarioTema/UsuarioTema";
+
 export type User = {
   createdAt: Date;
   firstName: string | null;
@@ -6,4 +8,5 @@ export type User = {
   roles: Array<string>;
   updatedAt: Date;
   username: string;
+  userThemes?: Array<UsuarioTema>;
 };

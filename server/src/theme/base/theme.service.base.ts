@@ -10,7 +10,7 @@ https://docs.amplication.com/docs/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "nestjs-prisma";
-import { Prisma, Theme } from "@prisma/client";
+import { Prisma, Theme, UsuarioTema } from "@prisma/client";
 
 export class ThemeServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -45,5 +45,16 @@ export class ThemeServiceBase {
     args: Prisma.SelectSubset<T, Prisma.ThemeDeleteArgs>
   ): Promise<Theme> {
     return this.prisma.theme.delete(args);
+  }
+
+  async findUserTheme(
+    parentId: string,
+    args: Prisma.UsuarioTemaFindManyArgs
+  ): Promise<UsuarioTema[]> {
+    return this.prisma.theme
+      .findUnique({
+        where: { id: parentId },
+      })
+      .userTheme(args);
   }
 }

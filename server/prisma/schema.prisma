@@ -8,14 +8,15 @@ generator client {
 }
 
 model User {
-  createdAt DateTime @default(now())
-  firstName String?
-  id        String   @id @default(cuid())
-  lastName  String?
-  password  String
-  roles     String[]
-  updatedAt DateTime @updatedAt
-  username  String   @unique
+  createdAt  DateTime      @default(now())
+  firstName  String?
+  id         String        @id @default(cuid())
+  lastName   String?
+  password   String
+  roles      String[]
+  updatedAt  DateTime      @updatedAt
+  username   String        @unique
+  userThemes UsuarioTema[]
 }
 
 model Course {
@@ -27,9 +28,20 @@ model Course {
 }
 
 model Theme {
-  createdAt   DateTime @default(now())
+  createdAt   DateTime      @default(now())
   description String?
-  id          String   @id @default(cuid())
+  id          String        @id @default(cuid())
   name        String
-  updatedAt   DateTime @updatedAt
+  updatedAt   DateTime      @updatedAt
+  userTheme   UsuarioTema[]
+}
+
+model UsuarioTema {
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  idTema    Theme    @relation(fields: [idTemaId], references: [id])
+  idTemaId  String   @unique
+  idUser    User     @relation(fields: [idUserId], references: [id])
+  idUserId  String   @unique
+  updatedAt DateTime @updatedAt
 }
