@@ -21,6 +21,10 @@ import { UsuarioTemaList } from "./usuarioTema/UsuarioTemaList";
 import { UsuarioTemaCreate } from "./usuarioTema/UsuarioTemaCreate";
 import { UsuarioTemaEdit } from "./usuarioTema/UsuarioTemaEdit";
 import { UsuarioTemaShow } from "./usuarioTema/UsuarioTemaShow";
+import { ScheduleConfigList } from "./scheduleConfig/ScheduleConfigList";
+import { ScheduleConfigCreate } from "./scheduleConfig/ScheduleConfigCreate";
+import { ScheduleConfigEdit } from "./scheduleConfig/ScheduleConfigEdit";
+import { ScheduleConfigShow } from "./scheduleConfig/ScheduleConfigShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -74,6 +78,13 @@ const App = (): React.ReactElement => {
           edit={UsuarioTemaEdit}
           create={UsuarioTemaCreate}
           show={UsuarioTemaShow}
+        />
+        <Resource
+          name="ScheduleConfig"
+          list={ScheduleConfigList}
+          edit={ScheduleConfigEdit}
+          create={ScheduleConfigCreate}
+          show={ScheduleConfigShow}
         />
       </Admin>
     </div>

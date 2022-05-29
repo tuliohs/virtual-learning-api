@@ -15,6 +15,7 @@ import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { Type } from "class-transformer";
 import { IsOptional, ValidateNested } from "class-validator";
 import { StringFilter } from "../../util/StringFilter";
+import { ScheduleConfigListRelationFilter } from "../../scheduleConfig/base/ScheduleConfigListRelationFilter";
 import { UsuarioTemaListRelationFilter } from "../../usuarioTema/base/UsuarioTemaListRelationFilter";
 @InputType()
 class UserWhereInput {
@@ -72,6 +73,18 @@ class UserWhereInput {
     nullable: true,
   })
   name?: StringNullableFilter;
+
+  @ApiProperty({
+    required: false,
+    type: () => ScheduleConfigListRelationFilter,
+  })
+  @ValidateNested()
+  @Type(() => ScheduleConfigListRelationFilter)
+  @IsOptional()
+  @Field(() => ScheduleConfigListRelationFilter, {
+    nullable: true,
+  })
+  scheduleConfigs?: ScheduleConfigListRelationFilter;
 
   @ApiProperty({
     required: false,

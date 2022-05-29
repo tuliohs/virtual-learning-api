@@ -10,6 +10,7 @@ import {
   ReferenceArrayInput,
 } from "react-admin";
 
+import { ScheduleConfigTitle } from "../scheduleConfig/ScheduleConfigTitle";
 import { UsuarioTemaTitle } from "../usuarioTema/UsuarioTemaTitle";
 import { ROLES_OPTIONS } from "../user/RolesOptions";
 
@@ -28,6 +29,14 @@ export const UserEdit = (props: EditProps): React.ReactElement => {
           optionText="label"
           optionValue="value"
         />
+        <ReferenceArrayInput
+          source="scheduleConfigs"
+          reference="ScheduleConfig"
+          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
+          format={(value: any) => value && value.map((v: any) => v.id)}
+        >
+          <SelectArrayInput optionText={ScheduleConfigTitle} />
+        </ReferenceArrayInput>
         <TextInput label="Username" source="username" />
         <ReferenceArrayInput
           source="userThemes"

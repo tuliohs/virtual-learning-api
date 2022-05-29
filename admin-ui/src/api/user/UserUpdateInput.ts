@@ -1,3 +1,4 @@
+import { ScheduleConfigUpdateManyWithoutUsersInput } from "./ScheduleConfigUpdateManyWithoutUsersInput";
 import { UsuarioTemaUpdateManyWithoutUsersInput } from "./UsuarioTemaUpdateManyWithoutUsersInput";
 
 export type UserUpdateInput = {
@@ -7,6 +8,7 @@ export type UserUpdateInput = {
   name?: string | null;
   password?: string;
   roles?: Array<string>;
+  scheduleConfigs?: ScheduleConfigUpdateManyWithoutUsersInput;
   username?: string;
   userThemes?: UsuarioTemaUpdateManyWithoutUsersInput;
 };

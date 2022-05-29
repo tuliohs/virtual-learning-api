@@ -12,8 +12,9 @@ https://docs.amplication.com/docs/how-to/custom-code
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { IsString, IsOptional, ValidateNested } from "class-validator";
-import { UsuarioTemaUpdateManyWithoutUsersInput } from "./UsuarioTemaUpdateManyWithoutUsersInput";
+import { ScheduleConfigUpdateManyWithoutUsersInput } from "./ScheduleConfigUpdateManyWithoutUsersInput";
 import { Type } from "class-transformer";
+import { UsuarioTemaUpdateManyWithoutUsersInput } from "./UsuarioTemaUpdateManyWithoutUsersInput";
 @InputType()
 class UserUpdateInput {
   @ApiProperty({
@@ -83,6 +84,18 @@ class UserUpdateInput {
     nullable: true,
   })
   roles?: Array<string>;
+
+  @ApiProperty({
+    required: false,
+    type: () => ScheduleConfigUpdateManyWithoutUsersInput,
+  })
+  @ValidateNested()
+  @Type(() => ScheduleConfigUpdateManyWithoutUsersInput)
+  @IsOptional()
+  @Field(() => ScheduleConfigUpdateManyWithoutUsersInput, {
+    nullable: true,
+  })
+  scheduleConfigs?: ScheduleConfigUpdateManyWithoutUsersInput;
 
   @ApiProperty({
     required: false,

@@ -11,8 +11,8 @@ import {
   ReferenceField,
 } from "react-admin";
 
-import { THEME_TITLE_FIELD } from "../theme/ThemeTitle";
 import { USER_TITLE_FIELD } from "./UserTitle";
+import { THEME_TITLE_FIELD } from "../theme/ThemeTitle";
 
 export const UserShow = (props: ShowProps): React.ReactElement => {
   return (
@@ -27,6 +27,23 @@ export const UserShow = (props: ShowProps): React.ReactElement => {
         <TextField label="Roles" source="roles" />
         <DateField source="updatedAt" label="Updated At" />
         <TextField label="Username" source="username" />
+        <ReferenceManyField
+          reference="ScheduleConfig"
+          target="UserId"
+          label="ScheduleConfigs"
+        >
+          <Datagrid rowClick="show">
+            <DateField source="createdAt" label="Created At" />
+            <TextField label="DayWeek" source="dayWeek" />
+            <TextField label="ID" source="id" />
+            <ReferenceField label="IdUser" source="user.id" reference="User">
+              <TextField source={USER_TITLE_FIELD} />
+            </ReferenceField>
+            <TextField label="TimeEnd" source="timeEnd" />
+            <TextField label="TimeStart" source="timeStart" />
+            <DateField source="updatedAt" label="Updated At" />
+          </Datagrid>
+        </ReferenceManyField>
         <ReferenceManyField
           reference="UsuarioTema"
           target="UserId"

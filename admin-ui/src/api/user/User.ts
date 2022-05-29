@@ -1,3 +1,4 @@
+import { ScheduleConfig } from "../scheduleConfig/ScheduleConfig";
 import { UsuarioTema } from "../usuarioTema/UsuarioTema";
 
 export type User = {
@@ -8,6 +9,7 @@ export type User = {
   id: string;
   name: string | null;
   roles: Array<string>;
+  scheduleConfigs?: Array<ScheduleConfig>;
   updatedAt: Date;
   username: string;
   userThemes?: Array<UsuarioTema>;
