@@ -51,31 +51,35 @@ export class UsuarioTemaControllerBase {
       data: {
         ...data,
 
-        idTema: {
-          connect: data.idTema,
-        },
+        theme: data.theme
+          ? {
+              connect: data.theme,
+            }
+          : undefined,
 
-        idUser: {
-          connect: data.idUser,
-        },
+        user: data.user
+          ? {
+              connect: data.user,
+            }
+          : undefined,
       },
       select: {
         createdAt: true,
         id: true,
 
-        idTema: {
-          select: {
-            id: true,
-          },
-        },
-
-        idUser: {
+        theme: {
           select: {
             id: true,
           },
         },
 
         updatedAt: true,
+
+        user: {
+          select: {
+            id: true,
+          },
+        },
       },
     });
   }
@@ -98,19 +102,19 @@ export class UsuarioTemaControllerBase {
         createdAt: true,
         id: true,
 
-        idTema: {
-          select: {
-            id: true,
-          },
-        },
-
-        idUser: {
+        theme: {
           select: {
             id: true,
           },
         },
 
         updatedAt: true,
+
+        user: {
+          select: {
+            id: true,
+          },
+        },
       },
     });
   }
@@ -134,19 +138,19 @@ export class UsuarioTemaControllerBase {
         createdAt: true,
         id: true,
 
-        idTema: {
-          select: {
-            id: true,
-          },
-        },
-
-        idUser: {
+        theme: {
           select: {
             id: true,
           },
         },
 
         updatedAt: true,
+
+        user: {
+          select: {
+            id: true,
+          },
+        },
       },
     });
     if (result === null) {
@@ -177,31 +181,35 @@ export class UsuarioTemaControllerBase {
         data: {
           ...data,
 
-          idTema: {
-            connect: data.idTema,
-          },
+          theme: data.theme
+            ? {
+                connect: data.theme,
+              }
+            : undefined,
 
-          idUser: {
-            connect: data.idUser,
-          },
+          user: data.user
+            ? {
+                connect: data.user,
+              }
+            : undefined,
         },
         select: {
           createdAt: true,
           id: true,
 
-          idTema: {
-            select: {
-              id: true,
-            },
-          },
-
-          idUser: {
+          theme: {
             select: {
               id: true,
             },
           },
 
           updatedAt: true,
+
+          user: {
+            select: {
+              id: true,
+            },
+          },
         },
       });
     } catch (error) {
@@ -233,19 +241,19 @@ export class UsuarioTemaControllerBase {
           createdAt: true,
           id: true,
 
-          idTema: {
-            select: {
-              id: true,
-            },
-          },
-
-          idUser: {
+          theme: {
             select: {
               id: true,
             },
           },
 
           updatedAt: true,
+
+          user: {
+            select: {
+              id: true,
+            },
+          },
         },
       });
     } catch (error) {

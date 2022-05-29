@@ -83,7 +83,7 @@ export class UserServiceBase {
       .scheduleConfigs(args);
   }
 
-  async findUserThemes(
+  async findUsuarioTemas(
     parentId: string,
     args: Prisma.UsuarioTemaFindManyArgs
   ): Promise<UsuarioTema[]> {
@@ -91,6 +91,6 @@ export class UserServiceBase {
       .findUnique({
         where: { id: parentId },
       })
-      .userThemes(args);
+      .usuarioTemas(args);
   }
 }

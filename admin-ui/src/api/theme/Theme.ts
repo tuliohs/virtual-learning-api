@@ -6,5 +6,5 @@ export type Theme = {
   id: string;
   name: string;
   updatedAt: Date;
-  userTheme?: Array<UsuarioTema>;
+  usuarioTemas?: Array<UsuarioTema>;
 };

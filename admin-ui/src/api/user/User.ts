@@ -12,5 +12,5 @@ export type User = {
   scheduleConfigs?: Array<ScheduleConfig>;
   updatedAt: Date;
   username: string;
-  userThemes?: Array<UsuarioTema>;
+  usuarioTemas?: Array<UsuarioTema>;
 };

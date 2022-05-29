@@ -118,6 +118,6 @@ class UserUpdateInput {
   @Field(() => UsuarioTemaUpdateManyWithoutUsersInput, {
     nullable: true,
   })
-  userThemes?: UsuarioTemaUpdateManyWithoutUsersInput;
+  usuarioTemas?: UsuarioTemaUpdateManyWithoutUsersInput;
 }
 export { UserUpdateInput };

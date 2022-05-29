@@ -43,16 +43,7 @@ class UsuarioTemaOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  idTemaId?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  idUserId?: SortOrder;
+  themeId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -62,6 +53,15 @@ class UsuarioTemaOrderByInput {
     nullable: true,
   })
   updatedAt?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  userId?: SortOrder;
 }
 
 export { UsuarioTemaOrderByInput };

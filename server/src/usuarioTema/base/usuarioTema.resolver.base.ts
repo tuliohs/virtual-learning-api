@@ -101,13 +101,17 @@ export class UsuarioTemaResolverBase {
       data: {
         ...args.data,
 
-        idTema: {
-          connect: args.data.idTema,
-        },
+        theme: args.data.theme
+          ? {
+              connect: args.data.theme,
+            }
+          : undefined,
 
-        idUser: {
-          connect: args.data.idUser,
-        },
+        user: args.data.user
+          ? {
+              connect: args.data.user,
+            }
+          : undefined,
       },
     });
   }
@@ -128,13 +132,17 @@ export class UsuarioTemaResolverBase {
         data: {
           ...args.data,
 
-          idTema: {
-            connect: args.data.idTema,
-          },
+          theme: args.data.theme
+            ? {
+                connect: args.data.theme,
+              }
+            : undefined,
 
-          idUser: {
-            connect: args.data.idUser,
-          },
+          user: args.data.user
+            ? {
+                connect: args.data.user,
+              }
+            : undefined,
         },
       });
     } catch (error) {
@@ -175,8 +183,8 @@ export class UsuarioTemaResolverBase {
     action: "read",
     possession: "any",
   })
-  async idTema(@graphql.Parent() parent: UsuarioTema): Promise<Theme | null> {
-    const result = await this.service.getIdTema(parent.id);
+  async theme(@graphql.Parent() parent: UsuarioTema): Promise<Theme | null> {
+    const result = await this.service.getTheme(parent.id);
 
     if (!result) {
       return null;
@@ -191,8 +199,8 @@ export class UsuarioTemaResolverBase {
     action: "read",
     possession: "any",
   })
-  async idUser(@graphql.Parent() parent: UsuarioTema): Promise<User | null> {
-    const result = await this.service.getIdUser(parent.id);
+  async user(@graphql.Parent() parent: UsuarioTema): Promise<User | null> {
+    const result = await this.service.getUser(parent.id);
 
     if (!result) {
       return null;

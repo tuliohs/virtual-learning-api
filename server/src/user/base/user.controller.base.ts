@@ -318,32 +318,32 @@ export class UserControllerBase {
     action: "read",
     possession: "any",
   })
-  @common.Get("/:id/userThemes")
+  @common.Get("/:id/usuarioTemas")
   @ApiNestedQuery(UsuarioTemaFindManyArgs)
-  async findManyUserThemes(
+  async findManyUsuarioTemas(
     @common.Req() request: Request,
     @common.Param() params: UserWhereUniqueInput
   ): Promise<UsuarioTema[]> {
     const query = plainToClass(UsuarioTemaFindManyArgs, request.query);
-    const results = await this.service.findUserThemes(params.id, {
+    const results = await this.service.findUsuarioTemas(params.id, {
       ...query,
       select: {
         createdAt: true,
         id: true,
 
-        idTema: {
-          select: {
-            id: true,
-          },
-        },
-
-        idUser: {
+        theme: {
           select: {
             id: true,
           },
         },
 
         updatedAt: true,
+
+        user: {
+          select: {
+            id: true,
+          },
+        },
       },
     });
     if (results === null) {
@@ -359,13 +359,13 @@ export class UserControllerBase {
     action: "update",
     possession: "any",
   })
-  @common.Post("/:id/userThemes")
-  async connectUserThemes(
+  @common.Post("/:id/usuarioTemas")
+  async connectUsuarioTemas(
     @common.Param() params: UserWhereUniqueInput,
     @common.Body() body: UsuarioTemaWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      userThemes: {
+      usuarioTemas: {
         connect: body,
       },
     };
@@ -381,13 +381,13 @@ export class UserControllerBase {
     action: "update",
     possession: "any",
   })
-  @common.Patch("/:id/userThemes")
-  async updateUserThemes(
+  @common.Patch("/:id/usuarioTemas")
+  async updateUsuarioTemas(
     @common.Param() params: UserWhereUniqueInput,
     @common.Body() body: UsuarioTemaWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      userThemes: {
+      usuarioTemas: {
         set: body,
       },
     };
@@ -403,13 +403,13 @@ export class UserControllerBase {
     action: "update",
     possession: "any",
   })
-  @common.Delete("/:id/userThemes")
-  async disconnectUserThemes(
+  @common.Delete("/:id/usuarioTemas")
+  async disconnectUsuarioTemas(
     @common.Param() params: UserWhereUniqueInput,
     @common.Body() body: UsuarioTemaWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      userThemes: {
+      usuarioTemas: {
         disconnect: body,
       },
     };

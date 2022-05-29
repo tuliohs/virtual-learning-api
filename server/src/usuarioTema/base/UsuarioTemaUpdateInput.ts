@@ -27,7 +27,7 @@ class UsuarioTemaUpdateInput {
   @Field(() => ThemeWhereUniqueInput, {
     nullable: true,
   })
-  idTema?: ThemeWhereUniqueInput;
+  theme?: ThemeWhereUniqueInput | null;
 
   @ApiProperty({
     required: false,
@@ -39,6 +39,6 @@ class UsuarioTemaUpdateInput {
   @Field(() => UserWhereUniqueInput, {
     nullable: true,
   })
-  idUser?: UserWhereUniqueInput;
+  user?: UserWhereUniqueInput | null;
 }
 export { UsuarioTemaUpdateInput };

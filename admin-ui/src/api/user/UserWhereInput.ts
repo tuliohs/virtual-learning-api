@@ -11,5 +11,5 @@ export type UserWhereInput = {
   name?: StringNullableFilter;
   scheduleConfigs?: ScheduleConfigListRelationFilter;
   username?: StringFilter;
-  userThemes?: UsuarioTemaListRelationFilter;
+  usuarioTemas?: UsuarioTemaListRelationFilter;
 };

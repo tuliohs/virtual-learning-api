@@ -109,6 +109,6 @@ class UserCreateInput {
   @Field(() => UsuarioTemaCreateNestedManyWithoutUsersInput, {
     nullable: true,
   })
-  userThemes?: UsuarioTemaCreateNestedManyWithoutUsersInput;
+  usuarioTemas?: UsuarioTemaCreateNestedManyWithoutUsersInput;
 }
 export { UserCreateInput };

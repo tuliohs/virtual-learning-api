@@ -18,7 +18,7 @@ export const ThemeEdit = (props: EditProps): React.ReactElement => {
         <TextInput label="Description" multiline source="description" />
         <TextInput label="Name" source="name" />
         <ReferenceArrayInput
-          source="userTheme"
+          source="usuarioTemas"
           reference="UsuarioTema"
           parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
           format={(value: any) => value && value.map((v: any) => v.id)}

@@ -11,7 +11,7 @@ https://docs.amplication.com/docs/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsDate, IsString, ValidateNested } from "class-validator";
+import { IsDate, IsString, ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
 import { Theme } from "../../theme/base/Theme";
 import { User } from "../../user/base/User";
@@ -34,20 +34,13 @@ class UsuarioTema {
   id!: string;
 
   @ApiProperty({
-    required: true,
+    required: false,
     type: () => Theme,
   })
   @ValidateNested()
   @Type(() => Theme)
-  idTema?: Theme;
-
-  @ApiProperty({
-    required: true,
-    type: () => User,
-  })
-  @ValidateNested()
-  @Type(() => User)
-  idUser?: User;
+  @IsOptional()
+  theme?: Theme | null;
 
   @ApiProperty({
     required: true,
@@ -56,5 +49,14 @@ class UsuarioTema {
   @Type(() => Date)
   @Field(() => Date)
   updatedAt!: Date;
+
+  @ApiProperty({
+    required: false,
+    type: () => User,
+  })
+  @ValidateNested()
+  @Type(() => User)
+  @IsOptional()
+  user?: User | null;
 }
 export { UsuarioTema };

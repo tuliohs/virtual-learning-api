@@ -10,5 +10,5 @@ export type UserUpdateInput = {
   roles?: Array<string>;
   scheduleConfigs?: ScheduleConfigUpdateManyWithoutUsersInput;
   username?: string;
-  userThemes?: UsuarioTemaUpdateManyWithoutUsersInput;
+  usuarioTemas?: UsuarioTemaUpdateManyWithoutUsersInput;
 };

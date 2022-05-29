@@ -167,11 +167,11 @@ export class UserResolverBase {
     action: "read",
     possession: "any",
   })
-  async userThemes(
+  async usuarioTemas(
     @graphql.Parent() parent: User,
     @graphql.Args() args: UsuarioTemaFindManyArgs
   ): Promise<UsuarioTema[]> {
-    const results = await this.service.findUserThemes(parent.id, args);
+    const results = await this.service.findUsuarioTemas(parent.id, args);
 
     if (!results) {
       return [];

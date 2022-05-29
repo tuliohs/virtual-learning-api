@@ -3,5 +3,5 @@ import { UsuarioTemaCreateNestedManyWithoutThemesInput } from "./UsuarioTemaCrea
 export type ThemeCreateInput = {
   description?: string | null;
   name: string;
-  userTheme?: UsuarioTemaCreateNestedManyWithoutThemesInput;
+  usuarioTemas?: UsuarioTemaCreateNestedManyWithoutThemesInput;
 };

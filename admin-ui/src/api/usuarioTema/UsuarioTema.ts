@@ -4,7 +4,7 @@ import { User } from "../user/User";
 export type UsuarioTema = {
   createdAt: Date;
   id: string;
-  idTema?: Theme;
-  idUser?: User;
+  theme?: Theme | null;
   updatedAt: Date;
+  user?: User | null;
 };

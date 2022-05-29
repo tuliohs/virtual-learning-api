@@ -47,19 +47,19 @@ export class UsuarioTemaServiceBase {
     return this.prisma.usuarioTema.delete(args);
   }
 
-  async getIdTema(parentId: string): Promise<Theme | null> {
+  async getTheme(parentId: string): Promise<Theme | null> {
     return this.prisma.usuarioTema
       .findUnique({
         where: { id: parentId },
       })
-      .idTema();
+      .theme();
   }
 
-  async getIdUser(parentId: string): Promise<User | null> {
+  async getUser(parentId: string): Promise<User | null> {
     return this.prisma.usuarioTema
       .findUnique({
         where: { id: parentId },
       })
-      .idUser();
+      .user();
   }
 }

@@ -13,10 +13,10 @@ export const UsuarioTemaCreate = (props: CreateProps): React.ReactElement => {
   return (
     <Create {...props}>
       <SimpleForm>
-        <ReferenceInput source="theme.id" reference="Theme" label="IdTema">
+        <ReferenceInput source="theme.id" reference="Theme" label="Theme">
           <SelectInput optionText={ThemeTitle} />
         </ReferenceInput>
-        <ReferenceInput source="user.id" reference="User" label="IdUser">
+        <ReferenceInput source="user.id" reference="User" label="User">
           <SelectInput optionText={UserTitle} />
         </ReferenceInput>
       </SimpleForm>

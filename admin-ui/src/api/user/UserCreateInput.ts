@@ -10,5 +10,5 @@ export type UserCreateInput = {
   roles: Array<string>;
   scheduleConfigs?: ScheduleConfigCreateNestedManyWithoutUsersInput;
   username: string;
-  userThemes?: UsuarioTemaCreateNestedManyWithoutUsersInput;
+  usuarioTemas?: UsuarioTemaCreateNestedManyWithoutUsersInput;
 };
