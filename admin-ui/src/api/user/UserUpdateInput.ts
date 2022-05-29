@@ -1,8 +1,10 @@
 import { UsuarioTemaUpdateManyWithoutUsersInput } from "./UsuarioTemaUpdateManyWithoutUsersInput";
 
 export type UserUpdateInput = {
-  firstName?: string | null;
-  lastName?: string | null;
+  avatar?: string | null;
+  bio?: string | null;
+  email?: string | null;
+  name?: string | null;
   password?: string;
   roles?: Array<string>;
   username?: string;

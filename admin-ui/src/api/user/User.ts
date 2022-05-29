@@ -1,10 +1,12 @@
 import { UsuarioTema } from "../usuarioTema/UsuarioTema";
 
 export type User = {
+  avatar: string | null;
+  bio: string | null;
   createdAt: Date;
-  firstName: string | null;
+  email: string | null;
   id: string;
-  lastName: string | null;
+  name: string | null;
   roles: Array<string>;
   updatedAt: Date;
   username: string;
