@@ -8,10 +8,12 @@ generator client {
 }
 
 model User {
+  avatar     String?
+  bio        String?
   createdAt  DateTime      @default(now())
-  firstName  String?
+  email      String?
   id         String        @id @default(cuid())
-  lastName   String?
+  name       String?
   password   String
   roles      String[]
   updatedAt  DateTime      @updatedAt

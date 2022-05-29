@@ -3,9 +3,11 @@ import { StringFilter } from "../../util/StringFilter";
 import { UsuarioTemaListRelationFilter } from "../usuarioTema/UsuarioTemaListRelationFilter";
 
 export type UserWhereInput = {
-  firstName?: StringNullableFilter;
+  avatar?: StringNullableFilter;
+  bio?: StringNullableFilter;
+  email?: StringNullableFilter;
   id?: StringFilter;
-  lastName?: StringNullableFilter;
+  name?: StringNullableFilter;
   username?: StringFilter;
   userThemes?: UsuarioTemaListRelationFilter;
 };

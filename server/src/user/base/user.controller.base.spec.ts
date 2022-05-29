@@ -11,20 +11,24 @@ import { UserService } from "../user.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
+  avatar: "exampleAvatar",
+  bio: "exampleBio",
   createdAt: new Date(),
-  firstName: "exampleFirstName",
+  email: "exampleEmail",
   id: "exampleId",
-  lastName: "exampleLastName",
+  name: "exampleName",
   password: "examplePassword",
   roles: ["exampleRoles"],
   updatedAt: new Date(),
   username: "exampleUsername",
 };
 const CREATE_RESULT = {
+  avatar: "exampleAvatar",
+  bio: "exampleBio",
   createdAt: new Date(),
-  firstName: "exampleFirstName",
+  email: "exampleEmail",
   id: "exampleId",
-  lastName: "exampleLastName",
+  name: "exampleName",
   password: "examplePassword",
   roles: ["exampleRoles"],
   updatedAt: new Date(),
@@ -32,10 +36,12 @@ const CREATE_RESULT = {
 };
 const FIND_MANY_RESULT = [
   {
+    avatar: "exampleAvatar",
+    bio: "exampleBio",
     createdAt: new Date(),
-    firstName: "exampleFirstName",
+    email: "exampleEmail",
     id: "exampleId",
-    lastName: "exampleLastName",
+    name: "exampleName",
     password: "examplePassword",
     roles: ["exampleRoles"],
     updatedAt: new Date(),
@@ -43,10 +49,12 @@ const FIND_MANY_RESULT = [
   },
 ];
 const FIND_ONE_RESULT = {
+  avatar: "exampleAvatar",
+  bio: "exampleBio",
   createdAt: new Date(),
-  firstName: "exampleFirstName",
+  email: "exampleEmail",
   id: "exampleId",
-  lastName: "exampleLastName",
+  name: "exampleName",
   password: "examplePassword",
   roles: ["exampleRoles"],
   updatedAt: new Date(),
