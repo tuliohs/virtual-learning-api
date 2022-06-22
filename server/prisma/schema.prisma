@@ -22,14 +22,6 @@ model User {
   usuarioTemas    UsuarioTema[]
 }
 
-model Course {
-  createdAt   DateTime @default(now())
-  description String?
-  id          String   @id @default(cuid())
-  title       String
-  updatedAt   DateTime @updatedAt
-}
-
 model Theme {
   createdAt    DateTime      @default(now())
   description  String?
