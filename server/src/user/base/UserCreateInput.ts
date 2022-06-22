@@ -40,15 +40,12 @@ class UserCreateInput {
   bio?: string | null;
 
   @ApiProperty({
-    required: false,
+    required: true,
     type: String,
   })
   @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  email?: string | null;
+  @Field(() => String)
+  email!: string;
 
   @ApiProperty({
     required: false,

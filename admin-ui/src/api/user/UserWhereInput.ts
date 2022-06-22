@@ -6,7 +6,7 @@ import { UsuarioTemaListRelationFilter } from "../usuarioTema/UsuarioTemaListRel
 export type UserWhereInput = {
   avatar?: StringNullableFilter;
   bio?: StringNullableFilter;
-  email?: StringNullableFilter;
+  email?: StringFilter;
   id?: StringFilter;
   name?: StringNullableFilter;
   scheduleConfigs?: ScheduleConfigListRelationFilter;
