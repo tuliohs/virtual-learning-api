@@ -9,10 +9,6 @@ import { UserList } from "./user/UserList";
 import { UserCreate } from "./user/UserCreate";
 import { UserEdit } from "./user/UserEdit";
 import { UserShow } from "./user/UserShow";
-import { CourseList } from "./course/CourseList";
-import { CourseCreate } from "./course/CourseCreate";
-import { CourseEdit } from "./course/CourseEdit";
-import { CourseShow } from "./course/CourseShow";
 import { ThemeList } from "./theme/ThemeList";
 import { ThemeCreate } from "./theme/ThemeCreate";
 import { ThemeEdit } from "./theme/ThemeEdit";
@@ -57,13 +53,6 @@ const App = (): React.ReactElement => {
           edit={UserEdit}
           create={UserCreate}
           show={UserShow}
-        />
-        <Resource
-          name="Course"
-          list={CourseList}
-          edit={CourseEdit}
-          create={CourseCreate}
-          show={CourseShow}
         />
         <Resource
           name="Theme"

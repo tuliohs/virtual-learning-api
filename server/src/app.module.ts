@@ -2,7 +2,6 @@ import { Module, Scope } from "@nestjs/common";
 import { APP_INTERCEPTOR } from "@nestjs/core";
 import { MorganInterceptor, MorganModule } from "nest-morgan";
 import { UserModule } from "./user/user.module";
-import { CourseModule } from "./course/course.module";
 import { ThemeModule } from "./theme/theme.module";
 import { UsuarioTemaModule } from "./usuarioTema/usuarioTema.module";
 import { ScheduleConfigModule } from "./scheduleConfig/scheduleConfig.module";
@@ -19,7 +18,6 @@ import { GraphQLModule } from "@nestjs/graphql";
   controllers: [],
   imports: [
     UserModule,
-    CourseModule,
     ThemeModule,
     UsuarioTemaModule,
     ScheduleConfigModule,
