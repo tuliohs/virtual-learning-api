@@ -1,16 +1,29 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { InputType, Field } from "@nestjs/graphql";
-import { IsString } from "class-validator";
+import { IsOptional, IsString } from "class-validator";
 
 @InputType()
 export class Credentials {
   @ApiProperty({
-    required: true,
+    required: false,
     type: String,
   })
   @IsString()
-  @Field(() => String, { nullable: false })
-  username!: string;
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  email?: string | null;
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  username?: string | null;
   @ApiProperty({
     required: true,
     type: String,
