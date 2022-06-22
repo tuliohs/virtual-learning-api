@@ -4,7 +4,7 @@ import { UsuarioTemaCreateNestedManyWithoutUsersInput } from "./UsuarioTemaCreat
 export type UserCreateInput = {
   avatar?: string | null;
   bio?: string | null;
-  email?: string | null;
+  email: string;
   name?: string | null;
   password: string;
   roles: Array<string>;

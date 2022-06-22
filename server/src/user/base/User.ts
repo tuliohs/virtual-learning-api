@@ -48,15 +48,12 @@ class User {
   createdAt!: Date;
 
   @ApiProperty({
-    required: false,
+    required: true,
     type: String,
   })
   @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  email!: string | null;
+  @Field(() => String)
+  email!: string;
 
   @ApiProperty({
     required: true,

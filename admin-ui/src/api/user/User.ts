@@ -5,7 +5,7 @@ export type User = {
   avatar: string | null;
   bio: string | null;
   createdAt: Date;
-  email: string | null;
+  email: string;
   id: string;
   name: string | null;
   roles: Array<string>;
