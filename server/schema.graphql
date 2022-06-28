@@ -2,45 +2,10 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Course {
-  createdAt: DateTime!
-  description: String
-  id: String!
-  title: String!
-  updatedAt: DateTime!
-}
-
-input CourseCreateInput {
-  description: String
-  title: String!
-}
-
-input CourseOrderByInput {
-  createdAt: SortOrder
-  description: SortOrder
-  id: SortOrder
-  title: SortOrder
-  updatedAt: SortOrder
-}
-
-input CourseUpdateInput {
-  description: String
-  title: String
-}
-
-input CourseWhereInput {
-  description: StringNullableFilter
-  id: StringFilter
-  title: StringFilter
-}
-
-input CourseWhereUniqueInput {
-  id: String!
-}
-
 input Credentials {
+  email: String
   password: String!
-  username: String!
+  username: String
 }
 
 """
@@ -48,33 +13,118 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+enum EnumScheduleConfigDayWeek {
+  Domingo
+  Quarta
+  Quinta
+  SBado
+  Segunda
+  Sexta
+  TerA
+}
+
 type MetaQueryPayload {
   count: Float!
 }
 
 type Mutation {
-  createCourse(data: CourseCreateInput!): Course!
+  createScheduleConfig(data: ScheduleConfigCreateInput!): ScheduleConfig!
+  createTheme(data: ThemeCreateInput!): Theme!
   createUser(data: UserCreateInput!): User!
-  deleteCourse(where: CourseWhereUniqueInput!): Course!
+  createUsuarioTema(data: UsuarioTemaCreateInput!): UsuarioTema!
+  deleteScheduleConfig(where: ScheduleConfigWhereUniqueInput!): ScheduleConfig!
+  deleteTheme(where: ThemeWhereUniqueInput!): Theme!
   deleteUser(where: UserWhereUniqueInput!): User!
+  deleteUsuarioTema(where: UsuarioTemaWhereUniqueInput!): UsuarioTema!
   login(credentials: Credentials!): UserInfo!
-  updateCourse(data: CourseUpdateInput!, where: CourseWhereUniqueInput!): Course!
+  signup(data: UserCreateInput!): UserInfo!
+  updateScheduleConfig(data: ScheduleConfigUpdateInput!, where: ScheduleConfigWhereUniqueInput!): ScheduleConfig!
+  updateTheme(data: ThemeUpdateInput!, where: ThemeWhereUniqueInput!): Theme!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User!
+  updateUsuarioTema(data: UsuarioTemaUpdateInput!, where: UsuarioTemaWhereUniqueInput!): UsuarioTema!
 }
 
 type Query {
-  _coursesMeta(orderBy: [CourseOrderByInput!], skip: Float, take: Float, where: CourseWhereInput): MetaQueryPayload!
+  _scheduleConfigsMeta(orderBy: [ScheduleConfigOrderByInput!], skip: Float, take: Float, where: ScheduleConfigWhereInput): MetaQueryPayload!
+  _themesMeta(orderBy: [ThemeOrderByInput!], skip: Float, take: Float, where: ThemeWhereInput): MetaQueryPayload!
   _usersMeta(orderBy: [UserOrderByInput!], skip: Float, take: Float, where: UserWhereInput): MetaQueryPayload!
-  course(where: CourseWhereUniqueInput!): Course
-  courses(orderBy: [CourseOrderByInput!], skip: Float, take: Float, where: CourseWhereInput): [Course!]!
+  _usuarioTemasMeta(orderBy: [UsuarioTemaOrderByInput!], skip: Float, take: Float, where: UsuarioTemaWhereInput): MetaQueryPayload!
+  scheduleConfig(where: ScheduleConfigWhereUniqueInput!): ScheduleConfig
+  scheduleConfigs(orderBy: [ScheduleConfigOrderByInput!], skip: Float, take: Float, where: ScheduleConfigWhereInput): [ScheduleConfig!]!
+  theme(where: ThemeWhereUniqueInput!): Theme
+  themes(orderBy: [ThemeOrderByInput!], skip: Float, take: Float, where: ThemeWhereInput): [Theme!]!
   user(where: UserWhereUniqueInput!): User
   userInfo: UserInfo!
   users(orderBy: [UserOrderByInput!], skip: Float, take: Float, where: UserWhereInput): [User!]!
+  usuarioTema(where: UsuarioTemaWhereUniqueInput!): UsuarioTema
+  usuarioTemas(orderBy: [UsuarioTemaOrderByInput!], skip: Float, take: Float, where: UsuarioTemaWhereInput): [UsuarioTema!]!
 }
 
 enum QueryMode {
   Default
   Insensitive
+}
+
+type ScheduleConfig {
+  createdAt: DateTime!
+  dayWeek: EnumScheduleConfigDayWeek
+  id: String!
+  timeEnd: String!
+  timeStart: String!
+  updatedAt: DateTime!
+  user: User
+}
+
+input ScheduleConfigCreateInput {
+  dayWeek: EnumScheduleConfigDayWeek
+  timeEnd: String!
+  timeStart: String!
+  user: UserWhereUniqueInput
+}
+
+input ScheduleConfigCreateNestedManyWithoutUsersInput {
+  connect: [ScheduleConfigWhereUniqueInput!]
+}
+
+input ScheduleConfigListRelationFilter {
+  every: ScheduleConfigWhereInput
+  none: ScheduleConfigWhereInput
+  some: ScheduleConfigWhereInput
+}
+
+input ScheduleConfigOrderByInput {
+  createdAt: SortOrder
+  dayWeek: SortOrder
+  id: SortOrder
+  timeEnd: SortOrder
+  timeStart: SortOrder
+  updatedAt: SortOrder
+  userId: SortOrder
+}
+
+input ScheduleConfigUpdateInput {
+  dayWeek: EnumScheduleConfigDayWeek
+  timeEnd: String
+  timeStart: String
+  user: UserWhereUniqueInput
+}
+
+input ScheduleConfigUpdateManyWithoutUsersInput {
+  connect: [ScheduleConfigWhereUniqueInput!]
+  disconnect: [ScheduleConfigWhereUniqueInput!]
+  set: [ScheduleConfigWhereUniqueInput!]
+}
+
+input ScheduleConfigWhereInput {
+  dayWeek: EnumScheduleConfigDayWeek
+  id: StringFilter
+  timeEnd: StringFilter
+  timeStart: StringFilter
+  user: UserWhereUniqueInput
+}
+
+input ScheduleConfigWhereUniqueInput {
+  id: String!
 }
 
 enum SortOrder {
@@ -112,35 +162,86 @@ input StringNullableFilter {
   startsWith: String
 }
 
-type User {
+type Theme {
   createdAt: DateTime!
-  firstName: String
+  description: String
   id: String!
-  lastName: String
+  name: String!
+  updatedAt: DateTime!
+  usuarioTemas(orderBy: [UsuarioTemaOrderByInput!], skip: Float, take: Float, where: UsuarioTemaWhereInput): [UsuarioTema!]!
+}
+
+input ThemeCreateInput {
+  description: String
+  name: String!
+  usuarioTemas: UsuarioTemaCreateNestedManyWithoutThemesInput
+}
+
+input ThemeOrderByInput {
+  createdAt: SortOrder
+  description: SortOrder
+  id: SortOrder
+  name: SortOrder
+  updatedAt: SortOrder
+}
+
+input ThemeUpdateInput {
+  description: String
+  name: String
+  usuarioTemas: UsuarioTemaUpdateManyWithoutThemesInput
+}
+
+input ThemeWhereInput {
+  description: StringNullableFilter
+  id: StringFilter
+  name: StringFilter
+  usuarioTemas: UsuarioTemaListRelationFilter
+}
+
+input ThemeWhereUniqueInput {
+  id: String!
+}
+
+type User {
+  avatar: String
+  bio: String
+  createdAt: DateTime!
+  email: String!
+  id: String!
+  name: String
   roles: [String!]!
+  scheduleConfigs(orderBy: [ScheduleConfigOrderByInput!], skip: Float, take: Float, where: ScheduleConfigWhereInput): [ScheduleConfig!]!
   updatedAt: DateTime!
   username: String!
+  usuarioTemas(orderBy: [UsuarioTemaOrderByInput!], skip: Float, take: Float, where: UsuarioTemaWhereInput): [UsuarioTema!]!
 }
 
 input UserCreateInput {
-  firstName: String
-  lastName: String
+  avatar: String
+  bio: String
+  email: String!
+  name: String
   password: String!
   roles: [String!]!
+  scheduleConfigs: ScheduleConfigCreateNestedManyWithoutUsersInput
   username: String!
+  usuarioTemas: UsuarioTemaCreateNestedManyWithoutUsersInput
 }
 
 type UserInfo {
   accessToken: String
+  id: String!
   roles: [String!]!
   username: String!
 }
 
 input UserOrderByInput {
+  avatar: SortOrder
+  bio: SortOrder
   createdAt: SortOrder
-  firstName: SortOrder
+  email: SortOrder
   id: SortOrder
-  lastName: SortOrder
+  name: SortOrder
   password: SortOrder
   roles: SortOrder
   updatedAt: SortOrder
@@ -148,20 +249,90 @@ input UserOrderByInput {
 }
 
 input UserUpdateInput {
-  firstName: String
-  lastName: String
+  avatar: String
+  bio: String
+  email: String
+  name: String
   password: String
   roles: [String!]
+  scheduleConfigs: ScheduleConfigUpdateManyWithoutUsersInput
   username: String
+  usuarioTemas: UsuarioTemaUpdateManyWithoutUsersInput
 }
 
 input UserWhereInput {
-  firstName: StringNullableFilter
+  avatar: StringNullableFilter
+  bio: StringNullableFilter
+  email: StringFilter
   id: StringFilter
-  lastName: StringNullableFilter
+  name: StringNullableFilter
+  scheduleConfigs: ScheduleConfigListRelationFilter
   username: StringFilter
+  usuarioTemas: UsuarioTemaListRelationFilter
 }
 
 input UserWhereUniqueInput {
+  id: String!
+}
+
+type UsuarioTema {
+  createdAt: DateTime!
+  id: String!
+  theme: Theme
+  updatedAt: DateTime!
+  user: User
+}
+
+input UsuarioTemaCreateInput {
+  theme: ThemeWhereUniqueInput
+  user: UserWhereUniqueInput
+}
+
+input UsuarioTemaCreateNestedManyWithoutThemesInput {
+  connect: [UsuarioTemaWhereUniqueInput!]
+}
+
+input UsuarioTemaCreateNestedManyWithoutUsersInput {
+  connect: [UsuarioTemaWhereUniqueInput!]
+}
+
+input UsuarioTemaListRelationFilter {
+  every: UsuarioTemaWhereInput
+  none: UsuarioTemaWhereInput
+  some: UsuarioTemaWhereInput
+}
+
+input UsuarioTemaOrderByInput {
+  createdAt: SortOrder
+  id: SortOrder
+  themeId: SortOrder
+  updatedAt: SortOrder
+  userId: SortOrder
+}
+
+input UsuarioTemaUpdateInput {
+  theme: ThemeWhereUniqueInput
+  user: UserWhereUniqueInput
+}
+
+input UsuarioTemaUpdateManyWithoutThemesInput {
+  connect: [UsuarioTemaWhereUniqueInput!]
+  disconnect: [UsuarioTemaWhereUniqueInput!]
+  set: [UsuarioTemaWhereUniqueInput!]
+}
+
+input UsuarioTemaUpdateManyWithoutUsersInput {
+  connect: [UsuarioTemaWhereUniqueInput!]
+  disconnect: [UsuarioTemaWhereUniqueInput!]
+  set: [UsuarioTemaWhereUniqueInput!]
+}
+
+input UsuarioTemaWhereInput {
+  id: StringFilter
+  theme: ThemeWhereUniqueInput
+  user: UserWhereUniqueInput
+}
+
+input UsuarioTemaWhereUniqueInput {
   id: String!
 }
