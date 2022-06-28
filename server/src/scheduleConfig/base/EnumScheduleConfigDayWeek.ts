@@ -12,7 +12,7 @@ https://docs.amplication.com/docs/how-to/custom-code
 import { registerEnumType } from "@nestjs/graphql";
 
 export enum EnumScheduleConfigDayWeek {
-  Segunda = "Segunda",
+  Segunda = "segunda",
   TerA = "terca",
   Quarta = "quarta",
   Quinta = "quinta",

@@ -2,7 +2,7 @@ import { UserWhereUniqueInput } from "../user/UserWhereUniqueInput";
 
 export type ScheduleConfigCreateInput = {
   dayWeek?:
-    | "Segunda"
+    | "segunda"
     | "terca"
     | "quarta"
     | "quinta"

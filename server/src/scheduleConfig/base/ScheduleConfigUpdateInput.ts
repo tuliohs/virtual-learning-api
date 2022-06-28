@@ -27,7 +27,7 @@ class ScheduleConfigUpdateInput {
     nullable: true,
   })
   dayWeek?:
-    | "Segunda"
+    | "segunda"
     | "terca"
     | "quarta"
     | "quinta"

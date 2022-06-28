@@ -6,7 +6,6 @@ import { GqlDefaultAuthGuard } from "./gqlDefaultAuth.guard";
 import { UserData } from "./userData.decorator";
 import { LoginArgs } from "./LoginArgs";
 import { UserInfo } from "./UserInfo";
-import { CreateUserArgs } from "src/user/base/CreateUserArgs";
 
 @Resolver(UserInfo)
 export class AuthResolver {
@@ -20,10 +19,5 @@ export class AuthResolver {
   @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
   async userInfo(@UserData() userInfo: UserInfo): Promise<UserInfo> {
     return userInfo;
-  }
-
-  @Mutation(() => UserInfo)
-  async signup(@Args() args: CreateUserArgs): Promise<UserInfo> {
-    return this.authService.signup(args.data);
   }
 }

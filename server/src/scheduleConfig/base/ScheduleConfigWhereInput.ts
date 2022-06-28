@@ -28,7 +28,7 @@ class ScheduleConfigWhereInput {
     nullable: true,
   })
   dayWeek?:
-    | "Segunda"
+    | "segunda"
     | "terca"
     | "quarta"
     | "quinta"

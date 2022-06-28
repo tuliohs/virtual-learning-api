@@ -19,7 +19,7 @@ export const ScheduleConfigCreate = (
           source="dayWeek"
           label="DayWeek"
           choices={[
-            { label: "Segunda", value: "Segunda" },
+            { label: "Segunda", value: "segunda" },
             { label: "Terça", value: "terca" },
             { label: "Quarta", value: "quarta" },
             { label: "Quinta", value: "quinta" },
