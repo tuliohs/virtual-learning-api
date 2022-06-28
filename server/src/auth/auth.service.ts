@@ -60,7 +60,8 @@ export class AuthService {
         //TODO mudar senha padrão
         password:"123456",
         email , 
-        roles: ['todoUser'], // Here we assign every new user the `Todo User` role
+        //TODO verificar role padão 
+        roles: ['user'], // Here we assign every new user the `Todo User` role
       },
     });
     // If creating a new user fails throw an error
@@ -74,6 +75,7 @@ export class AuthService {
     return {
       accessToken,
       username: user.username,
+      id: user.id,
       roles: user.roles,
     };
   }
