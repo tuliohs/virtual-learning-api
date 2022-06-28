@@ -3,7 +3,7 @@ import { User } from "../user/User";
 export type ScheduleConfig = {
   createdAt: Date;
   dayWeek?:
-    | "Segunda"
+    | "segunda"
     | "terca"
     | "quarta"
     | "quinta"

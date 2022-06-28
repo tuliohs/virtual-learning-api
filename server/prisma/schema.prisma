@@ -53,7 +53,7 @@ model ScheduleConfig {
 }
 
 enum EnumScheduleConfigDayWeek {
-  Segunda
+  segunda
   terca
   quarta
   quinta
