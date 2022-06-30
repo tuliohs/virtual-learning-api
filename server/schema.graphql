@@ -2,6 +2,11 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+input BooleanNullableFilter {
+  equals: Boolean
+  not: Boolean
+}
+
 input Credentials {
   password: String!
   username: String!
@@ -27,27 +32,88 @@ type MetaQueryPayload {
 }
 
 type Mutation {
+  createPreRegister(data: PreRegisterCreateInput!): PreRegister!
   createScheduleConfig(data: ScheduleConfigCreateInput!): ScheduleConfig!
   createTheme(data: ThemeCreateInput!): Theme!
   createUser(data: UserCreateInput!): User!
   createUsuarioTema(data: UsuarioTemaCreateInput!): UsuarioTema!
+  deletePreRegister(where: PreRegisterWhereUniqueInput!): PreRegister!
   deleteScheduleConfig(where: ScheduleConfigWhereUniqueInput!): ScheduleConfig!
   deleteTheme(where: ThemeWhereUniqueInput!): Theme!
   deleteUser(where: UserWhereUniqueInput!): User!
   deleteUsuarioTema(where: UsuarioTemaWhereUniqueInput!): UsuarioTema!
   login(credentials: Credentials!): UserInfo!
-  signup(data: UserCreateInput!): UserInfo!
+  updatePreRegister(data: PreRegisterUpdateInput!, where: PreRegisterWhereUniqueInput!): PreRegister!
   updateScheduleConfig(data: ScheduleConfigUpdateInput!, where: ScheduleConfigWhereUniqueInput!): ScheduleConfig!
   updateTheme(data: ThemeUpdateInput!, where: ThemeWhereUniqueInput!): Theme!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User!
   updateUsuarioTema(data: UsuarioTemaUpdateInput!, where: UsuarioTemaWhereUniqueInput!): UsuarioTema!
 }
 
+type PreRegister {
+  createdAt: DateTime!
+  email: String
+  id: String!
+  message: String
+  name: String
+  origin: String
+  phone: String
+  processed: Boolean
+  updatedAt: DateTime!
+}
+
+input PreRegisterCreateInput {
+  email: String
+  message: String
+  name: String
+  origin: String
+  phone: String
+  processed: Boolean
+}
+
+input PreRegisterOrderByInput {
+  createdAt: SortOrder
+  email: SortOrder
+  id: SortOrder
+  message: SortOrder
+  name: SortOrder
+  origin: SortOrder
+  phone: SortOrder
+  processed: SortOrder
+  updatedAt: SortOrder
+}
+
+input PreRegisterUpdateInput {
+  email: String
+  message: String
+  name: String
+  origin: String
+  phone: String
+  processed: Boolean
+}
+
+input PreRegisterWhereInput {
+  email: StringNullableFilter
+  id: StringFilter
+  message: StringNullableFilter
+  name: StringNullableFilter
+  origin: StringNullableFilter
+  phone: StringNullableFilter
+  processed: BooleanNullableFilter
+}
+
+input PreRegisterWhereUniqueInput {
+  id: String!
+}
+
 type Query {
+  _preRegistersMeta(orderBy: [PreRegisterOrderByInput!], skip: Float, take: Float, where: PreRegisterWhereInput): MetaQueryPayload!
   _scheduleConfigsMeta(orderBy: [ScheduleConfigOrderByInput!], skip: Float, take: Float, where: ScheduleConfigWhereInput): MetaQueryPayload!
   _themesMeta(orderBy: [ThemeOrderByInput!], skip: Float, take: Float, where: ThemeWhereInput): MetaQueryPayload!
   _usersMeta(orderBy: [UserOrderByInput!], skip: Float, take: Float, where: UserWhereInput): MetaQueryPayload!
   _usuarioTemasMeta(orderBy: [UsuarioTemaOrderByInput!], skip: Float, take: Float, where: UsuarioTemaWhereInput): MetaQueryPayload!
+  preRegister(where: PreRegisterWhereUniqueInput!): PreRegister
+  preRegisters(orderBy: [PreRegisterOrderByInput!], skip: Float, take: Float, where: PreRegisterWhereInput): [PreRegister!]!
   scheduleConfig(where: ScheduleConfigWhereUniqueInput!): ScheduleConfig
   scheduleConfigs(orderBy: [ScheduleConfigOrderByInput!], skip: Float, take: Float, where: ScheduleConfigWhereInput): [ScheduleConfig!]!
   theme(where: ThemeWhereUniqueInput!): Theme
@@ -229,7 +295,6 @@ input UserCreateInput {
 
 type UserInfo {
   accessToken: String
-  id: String!
   roles: [String!]!
   username: String!
 }
