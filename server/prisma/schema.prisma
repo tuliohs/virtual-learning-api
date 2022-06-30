@@ -52,6 +52,18 @@ model ScheduleConfig {
   userId    String?
 }
 
+model PreRegister {
+  createdAt DateTime @default(now())
+  email     String?
+  id        String   @id @default(cuid())
+  message   String?
+  name      String?
+  origin    String?
+  phone     String?
+  processed Boolean?
+  updatedAt DateTime @updatedAt
+}
+
 enum EnumScheduleConfigDayWeek {
   segunda
   terca

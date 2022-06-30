@@ -21,6 +21,10 @@ import { ScheduleConfigList } from "./scheduleConfig/ScheduleConfigList";
 import { ScheduleConfigCreate } from "./scheduleConfig/ScheduleConfigCreate";
 import { ScheduleConfigEdit } from "./scheduleConfig/ScheduleConfigEdit";
 import { ScheduleConfigShow } from "./scheduleConfig/ScheduleConfigShow";
+import { PreRegisterList } from "./preRegister/PreRegisterList";
+import { PreRegisterCreate } from "./preRegister/PreRegisterCreate";
+import { PreRegisterEdit } from "./preRegister/PreRegisterEdit";
+import { PreRegisterShow } from "./preRegister/PreRegisterShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -74,6 +78,13 @@ const App = (): React.ReactElement => {
           edit={ScheduleConfigEdit}
           create={ScheduleConfigCreate}
           show={ScheduleConfigShow}
+        />
+        <Resource
+          name="PreRegister"
+          list={PreRegisterList}
+          edit={PreRegisterEdit}
+          create={PreRegisterCreate}
+          show={PreRegisterShow}
         />
       </Admin>
     </div>
