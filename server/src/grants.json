@@ -43,12 +43,6 @@
   },
   {
     "role": "user",
-    "resource": "Theme",
-    "action": "read:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
     "resource": "UsuarioTema",
     "action": "read:own",
     "attributes": "*"
