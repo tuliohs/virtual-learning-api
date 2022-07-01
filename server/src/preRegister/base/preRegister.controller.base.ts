@@ -19,8 +19,9 @@ import { Request } from "express";
 import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { PreRegisterService } from "../preRegister.service";
-import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
+import { Public } from "../../decorators/public.decorator";
 import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
+import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
 import { PreRegisterCreateInput } from "./PreRegisterCreateInput";
 import { PreRegisterWhereInput } from "./PreRegisterWhereInput";
 import { PreRegisterWhereUniqueInput } from "./PreRegisterWhereUniqueInput";
@@ -35,12 +36,7 @@ export class PreRegisterControllerBase {
     protected readonly rolesBuilder: nestAccessControl.RolesBuilder
   ) {}
 
-  @common.UseInterceptors(AclValidateRequestInterceptor)
-  @nestAccessControl.UseRoles({
-    resource: "PreRegister",
-    action: "create",
-    possession: "any",
-  })
+  @Public()
   @common.Post()
   @swagger.ApiCreatedResponse({ type: PreRegister })
   @swagger.ApiForbiddenResponse({ type: errors.ForbiddenException })
