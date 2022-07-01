@@ -18,6 +18,7 @@ import * as gqlACGuard from "../../auth/gqlAC.guard";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
 import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
+import { Public } from "../../decorators/public.decorator";
 import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
 import { CreatePreRegisterArgs } from "./CreatePreRegisterArgs";
 import { UpdatePreRegisterArgs } from "./UpdatePreRegisterArgs";
@@ -84,13 +85,8 @@ export class PreRegisterResolverBase {
     return result;
   }
 
-  @common.UseInterceptors(AclValidateRequestInterceptor)
+  @Public()
   @graphql.Mutation(() => PreRegister)
-  @nestAccessControl.UseRoles({
-    resource: "PreRegister",
-    action: "create",
-    possession: "any",
-  })
   async createPreRegister(
     @graphql.Args() args: CreatePreRegisterArgs
   ): Promise<PreRegister> {
