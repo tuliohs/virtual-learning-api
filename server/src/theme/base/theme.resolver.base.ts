@@ -17,9 +17,9 @@ import { GqlDefaultAuthGuard } from "../../auth/gqlDefaultAuth.guard";
 import * as gqlACGuard from "../../auth/gqlAC.guard";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
 import { Public } from "../../decorators/public.decorator";
 import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
+import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
 import { CreateThemeArgs } from "./CreateThemeArgs";
 import { UpdateThemeArgs } from "./UpdateThemeArgs";
 import { DeleteThemeArgs } from "./DeleteThemeArgs";
@@ -38,12 +38,8 @@ export class ThemeResolverBase {
     protected readonly rolesBuilder: nestAccessControl.RolesBuilder
   ) {}
 
+  @Public()
   @graphql.Query(() => MetaQueryPayload)
-  @nestAccessControl.UseRoles({
-    resource: "Theme",
-    action: "read",
-    possession: "any",
-  })
   async _themesMeta(
     @graphql.Args() args: ThemeFindManyArgs
   ): Promise<MetaQueryPayload> {
@@ -57,13 +53,8 @@ export class ThemeResolverBase {
     };
   }
 
-  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @Public()
   @graphql.Query(() => [Theme])
-  @nestAccessControl.UseRoles({
-    resource: "Theme",
-    action: "read",
-    possession: "any",
-  })
   async themes(@graphql.Args() args: ThemeFindManyArgs): Promise<Theme[]> {
     return this.service.findMany(args);
   }
