@@ -19,6 +19,7 @@ import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
 import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
 import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
+import { Public } from "../../decorators/public.decorator";
 import { CreateUsuarioTemaArgs } from "./CreateUsuarioTemaArgs";
 import { UpdateUsuarioTemaArgs } from "./UpdateUsuarioTemaArgs";
 import { DeleteUsuarioTemaArgs } from "./DeleteUsuarioTemaArgs";
@@ -176,13 +177,8 @@ export class UsuarioTemaResolverBase {
     }
   }
 
-  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @Public()
   @graphql.ResolveField(() => Theme, { nullable: true })
-  @nestAccessControl.UseRoles({
-    resource: "Theme",
-    action: "read",
-    possession: "any",
-  })
   async theme(@graphql.Parent() parent: UsuarioTema): Promise<Theme | null> {
     const result = await this.service.getTheme(parent.id);
 
