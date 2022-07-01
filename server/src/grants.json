@@ -26,12 +26,6 @@
   {
     "role": "user",
     "resource": "Theme",
-    "action": "read:own",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "Theme",
     "action": "create:any",
     "attributes": "*"
   },

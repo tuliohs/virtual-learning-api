@@ -21,6 +21,7 @@ import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { ThemeService } from "../theme.service";
 import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
 import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
+import { Public } from "../../decorators/public.decorator";
 import { ThemeCreateInput } from "./ThemeCreateInput";
 import { ThemeWhereInput } from "./ThemeWhereInput";
 import { ThemeWhereUniqueInput } from "./ThemeWhereUniqueInput";
@@ -84,12 +85,7 @@ export class ThemeControllerBase {
     });
   }
 
-  @common.UseInterceptors(AclFilterResponseInterceptor)
-  @nestAccessControl.UseRoles({
-    resource: "Theme",
-    action: "read",
-    possession: "own",
-  })
+  @Public()
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Theme })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })

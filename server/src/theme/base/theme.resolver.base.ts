@@ -18,6 +18,7 @@ import * as gqlACGuard from "../../auth/gqlAC.guard";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
 import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
+import { Public } from "../../decorators/public.decorator";
 import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
 import { CreateThemeArgs } from "./CreateThemeArgs";
 import { UpdateThemeArgs } from "./UpdateThemeArgs";
@@ -67,13 +68,8 @@ export class ThemeResolverBase {
     return this.service.findMany(args);
   }
 
-  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @Public()
   @graphql.Query(() => Theme, { nullable: true })
-  @nestAccessControl.UseRoles({
-    resource: "Theme",
-    action: "read",
-    possession: "own",
-  })
   async theme(
     @graphql.Args() args: ThemeFindUniqueArgs
   ): Promise<Theme | null> {
