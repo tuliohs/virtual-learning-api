@@ -7,11 +7,11 @@
     "id": "cl2ior9nk1529901s6m57ffvlj",
     "url": "https://server.amplication.com/cl2ior9nk1529901s6m57ffvlj",
     "settings": {
-      "dbHost": "localhost",
+      "dbHost": "127.0.0.1",
       "dbName": "",
-      "dbPassword": "admin",
-      "dbPort": 5432,
-      "dbUser": "admin",
+      "dbPassword": "tulio",
+      "dbPort": 5433,
+      "dbUser": "postgres",
       "appId": "cl2ior9nk1529901s6m57ffvlj",
       "authProvider": "Jwt"
     }
