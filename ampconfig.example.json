@@ -1,0 +1,19 @@
+{
+  "dataServiceGeneratorVersion": "0.13.1",
+  "appInfo": {
+    "name": "virtual-learning",
+    "description": "",
+    "version": "lpqm2sbw",
+    "id": "cl2ior9nk1529901s6m57ffvlj",
+    "url": "https://server.amplication.com/cl2ior9nk1529901s6m57ffvlj",
+    "settings": {
+      "dbHost": "127.0.0.1",
+      "dbName": "",
+      "dbPassword": "tulio",
+      "dbPort": 5433,
+      "dbUser": "postgres",
+      "appId": "cl2ior9nk1529901s6m57ffvlj",
+      "authProvider": "Jwt"
+    }
+  }
+}
