@@ -8,6 +8,10 @@ const fileUpload = require("express-fileupload");
 const cors = require('cors');
 const app = express()
 
+require('dotenv').config()
+
+const PORT = process.env.PORT;
+
 const corsOptions = { origin: '*' }
 app.use(cors(corsOptions))
 
@@ -38,4 +42,4 @@ app.use(express.json())
 
 app.use(`/api/server-image`, require("./app/routes/image.routes"));
 
-app.listen(9093, () => console.log('Server started.'))
+app.listen(PORT || 9093, () => console.log('Server started.'))

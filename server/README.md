@@ -57,3 +57,11 @@ npm start
 ## Learn more
 
 You can learn more in the [Amplication documentation](https://docs.amplication.com/guides/getting-started).
+
+
+
+## Deploy
+
+pm2 delete openlive-api
+pm2 start npm --name "openlive-api" -- start
+
