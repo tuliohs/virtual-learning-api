@@ -43,6 +43,7 @@ type Mutation {
   deleteUser(where: UserWhereUniqueInput!): User!
   deleteUsuarioTema(where: UsuarioTemaWhereUniqueInput!): UsuarioTema!
   login(credentials: Credentials!): UserInfo!
+  signup(data: UserCreateInput!): UserInfo!
   updatePreRegister(data: PreRegisterUpdateInput!, where: PreRegisterWhereUniqueInput!): PreRegister!
   updateScheduleConfig(data: ScheduleConfigUpdateInput!, where: ScheduleConfigWhereUniqueInput!): ScheduleConfig!
   updateTheme(data: ThemeUpdateInput!, where: ThemeWhereUniqueInput!): Theme!
@@ -295,6 +296,7 @@ input UserCreateInput {
 
 type UserInfo {
   accessToken: String
+  id: String!
   roles: [String!]!
   username: String!
 }
