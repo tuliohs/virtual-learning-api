@@ -1,10 +1,12 @@
+### Usage
+
 This project was generated with [Amplication](https://amplication.com)
 
-It consists of two packages:
+Based packages:
 
-### [Server](./server/README.md)
+## [Server](./server/README.md)
 
-### [Admin UI](./admin-ui/README.md)
+## [Admin UI](./admin-ui/README.md)
 
 ### Learn more
 
